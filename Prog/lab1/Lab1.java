@@ -1,3 +1,5 @@
+import static java.lang.Math.*;
+
 public class Lab1 {
 
 	private static int Arr1_st = 7;
@@ -31,8 +33,8 @@ public class Lab1 {
 	private static double[] Array_2(int st, int end, int count) {
 		double[] x = new double[count];
 		for (int i = 0; i < count; i++) {
-			x[i] = Math.random()*14 - 7; 
-			//Math.random() возвращает [0;1)
+			x[i] = random()*14 - 7; 
+			//random() возвращает [0;1)
 			//* 14 -> от 0 до 14. -7 -> от -7 до +7
 		}
 
@@ -44,14 +46,10 @@ public class Lab1 {
 		double[][] res = new double[row][col];
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < col; j++) {
-				if (c[i] == 15) {
-					res[i][j] = CalculateFirst(x[j]);
-				}
-				else if ((c[i] == 7) || (c[i] == 13)) {
-					res[i][j] = CalculateSecond(x[j]);
-				}
-				else {
-					res[i][j] = CalculateThird(x[j]);
+				switch (c[i]) {
+				case 15 -> res[i][j] = CalculateFirst(x[j]);
+				case 7, 13 -> res[i][j] = CalculateSecond(x[j]);
+				default -> res[i][j] = CalculateThird(x[j]);
 				}
 			}
 		}
@@ -62,8 +60,8 @@ public class Lab1 {
 	private static double CalculateFirst(double x) {
 		double result;
 		result = 0.25 + (x + 1) / x;
-		result = Math.pow(result / Math.atan(x / 14), 2);
-		result = Math.pow(2 * result, 2);
+		result = pow(result / atan(x / 14), 2);
+		result = pow(2 * result, 2);
 		return result;
 	}
 
@@ -71,12 +69,12 @@ public class Lab1 {
 	private static double CalculateSecond(double x) {
 		double result;
 		double n_pow;
-		n_pow = 1 - Math.cbrt(x);
-		n_pow = Math.pow(0.25 * (3 + x), 3) * n_pow;
-		n_pow = Math.pow(n_pow, 3) + 1;
-		n_pow = n_pow * Math.atan(Math.sin(x));
-		result = Math.pow(Math.E, Math.pow(0.75 / (x - 4), 2));
-		result = Math.pow(result, n_pow);
+		n_pow = 1 - cbrt(x);
+		n_pow = pow(0.25 * (3 + x), 3) * n_pow;
+		n_pow = pow(n_pow, 3) + 1;
+		n_pow = n_pow * atan(sin(x));
+		result = pow(E, pow(0.75 / (x - 4), 2));
+		result = pow(result, n_pow);
 		return result;
 	}
 
@@ -84,8 +82,8 @@ public class Lab1 {
 	private static double CalculateThird(double x) {
 		double result;
 		double n_pow;
-		n_pow = Math.sin(Math.cbrt(Math.pow(Math.E, x)));
-		result = Math.pow(Math.E, n_pow);
+		n_pow = sin(cbrt(pow(E, x)));
+		result = pow(E, n_pow);
 		return result;
 	}
 
@@ -95,16 +93,21 @@ public class Lab1 {
 		double[] x = Array_2(Arr2_st, Arr2_end, Arr2_count);
 		double[][] res =  Array_3(c, x, Arr3_colum, Arr3_row);
 
-		for (int i = 0; i < Arr3_colum; i++) {
-			for (int j = 0; j < Arr3_row; j++) {
-				if (res[j][i] > Math.pow(10, 5)) {
-					System.out.printf("%15.5e ", res[j][i]);
+		print_res(res);
+	}	
+
+
+	private static void print_res(double[][] c) {
+		for (double[] i : c) {
+			for (double j : i) {
+				if (j > pow(10, 5)) {
+					System.out.printf("%15.5e ", j);
 				}
 				else {
-					System.out.printf("%15.5f ", res[j][i]);	
+					System.out.printf("%15.5f ", j);	
 				}
 			}
 			System.out.println();
 		}
-	}	
+	}
 }
