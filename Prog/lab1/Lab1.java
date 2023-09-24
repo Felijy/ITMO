@@ -2,16 +2,16 @@ import static java.lang.Math.*;
 
 public class Lab1 {
 
-	private static int Arr1_st = 7;
-	private static int Arr1_end = 15;
-	private static int Arr2_st = -7;
-	private static int Arr2_end = 7;
-	private static int Arr2_count = 20;
-	private static int Arr3_colum = 20;
-	private static int Arr3_row = 5;
+	private static final int ARR1_ST = 7;
+	private static final int ARR1_END = 15;
+	private static final int ARR2_ST = -7;
+	private static final int ARR2_END = 7;
+	private static final int ARR2_COUNT = 20;
+	private static final int ARR3_COLUMS = 20;
+	private static final int ARR3_ROWS = 5;
 	
 
-	private static short[] Array_1(int st, int end) {
+	private static short[] makeFirstArray(int st, int end) {
 		short k;
 		if (end % 2 == 0) {
 			k = (short)(end - 1);
@@ -30,7 +30,7 @@ public class Lab1 {
 	}
 
 
-	private static double[] Array_2(int st, int end, int count) {
+	private static double[] makeSecondArray(int st, int end, int count) {
 		double[] x = new double[count];
 		for (int i = 0; i < count; i++) {
 			x[i] = random()*14 - 7; 
@@ -42,14 +42,14 @@ public class Lab1 {
 	}
 
 
-	private static double[][] Array_3(short[] c, double[] x, int col, int row) {
+	private static double[][] makeThirdArray(short[] c, double[] x, int col, int row) {
 		double[][] res = new double[row][col];
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < col; j++) {
 				switch (c[i]) {
-				case 15 -> res[i][j] = CalculateFirst(x[j]);
-				case 7, 13 -> res[i][j] = CalculateSecond(x[j]);
-				default -> res[i][j] = CalculateThird(x[j]);
+				case 15 -> res[i][j] = calculateFirstStatement(x[j]);
+				case 7, 13 -> res[i][j] = calculateSecondStatement(x[j]);
+				default -> res[i][j] = calculateThirdStatement(x[j]);
 				}
 			}
 		}
@@ -57,7 +57,7 @@ public class Lab1 {
 	}
 
 
-	private static double CalculateFirst(double x) {
+	private static double calculateFirstStatement(double x) {
 		double result;
 		result = 0.25 + (x + 1) / x;
 		result = pow(result / atan(x / 14), 2);
@@ -66,32 +66,32 @@ public class Lab1 {
 	}
 
 
-	private static double CalculateSecond(double x) {
+	private static double calculateSecondStatement(double x) {
 		double result;
-		double n_pow;
-		n_pow = 1 - cbrt(x);
-		n_pow = pow(0.25 * (3 + x), 3) * n_pow;
-		n_pow = pow(n_pow, 3) + 1;
-		n_pow = n_pow * atan(sin(x));
+		double powNumber;
+		powNumber = 1 - cbrt(x);
+		powNumber = pow(0.25 * (3 + x), 3) * powNumber;
+		powNumber = pow(powNumber, 3) + 1;
+		powNumber = powNumber * atan(sin(x));
 		result = pow(E, pow(0.75 / (x - 4), 2));
-		result = pow(result, n_pow);
+		result = pow(result, powNumber);
 		return result;
 	}
 
 
-	private static double CalculateThird(double x) {
+	private static double calculateThirdStatement(double x) {
 		double result;
-		double n_pow;
-		n_pow = sin(cbrt(pow(E, x)));
-		result = pow(E, n_pow);
+		double powNumber;
+		powNumber = sin(cbrt(pow(E, x)));
+		result = pow(E, powNumber);
 		return result;
 	}
 
 
 	public static void main(String[] args) {
-		short[] c = Array_1(Arr1_st, Arr1_end);
-		double[] x = Array_2(Arr2_st, Arr2_end, Arr2_count);
-		double[][] res =  Array_3(c, x, Arr3_colum, Arr3_row);
+		short[] c = makeFirstArray(ARR1_ST, ARR1_END);
+		double[] x = makeSecondArray(ARR2_ST, ARR2_END, ARR2_COUNT);
+		double[][] res =  makeThirdArray(c, x, ARR3_COLUMS, ARR3_ROWS);
 
 		print_res(res);
 	}	
