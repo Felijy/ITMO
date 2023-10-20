@@ -3,13 +3,13 @@
     <target name="compile">
         <mkdir dir="build/classes"/>
         <javac destdir="build/classes" includeantruntime="false">
-            <src path="src/main/java/moves"/>
+            <src path="src/moves"/>
             <classpath>
             <pathelement path="Pokemon.jar"/>
         </classpath>
         </javac>
         <javac destdir="build/classes" includeantruntime="false">
-            <src path="src/main/java/pokemons"/>
+            <src path="src/pokemons"/>
             <classpath>
                 <pathelement path="Pokemon.jar"/>
             </classpath>
