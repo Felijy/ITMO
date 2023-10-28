@@ -8,7 +8,7 @@ chmod 044 quilava9/lombre
 
 cp ponyta8 weezing6/staryu/
 
-ln -s quilava9 Copy_91
+ln -s ~/opd/lab0/quilava9/ Copy_91
 
 chmod 700 cottonee4
 cp cottonee4 weezing6/pichucottonee
@@ -22,4 +22,4 @@ chmod 062 weezing6/caterpie
 chmod 060 weezing6/cinccino
 chmod 400 weezing6/pichu
 
-ln -s ponyta8 weezing6/caterpieponyta
+ln -s ~/opd/lab0/ponyta8 weezing6/caterpieponyta

@@ -17,7 +17,7 @@ echo "--4.4--"
 ls -l weezing6/ | sort -nk2 2>&1
 
 echo "--4.5--"
-ls -Rl | grep 'ga' | sort -nk5 | tail -4 2>/tmp/err
+ls -Rl | grep 'ga'| grep -v './' | sort -nk5 | head -4
 
 echo "--4.6--"
 ls -Rl | grep 'u$' | sort -nk8 2>&1
