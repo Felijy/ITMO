@@ -1,7 +1,15 @@
 
-English/English File 4th edition Intermediate - Student's Book.pdf
-English/English_File_4th_edition_Intermediate_Workbook.pdf
+English/*
 ICT/Informatika_2020_Chernovik.pdf
 *.docx
 *.odt
 *.doc
+ICT/other/*
+opd/test/*
+opb/bcomp/*
+Prog/lab2/*
+Prog/prac1/*
+Prog/test/*
+Дискретка/tex/*
+Дискретка/Материалы/*
+Дискретка/docs/*
