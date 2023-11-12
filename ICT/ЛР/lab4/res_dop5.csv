@@ -1,0 +1,44 @@
+schedule.day_number,2
+schedule.week_number,11
+schedule.date,"2023-11-07"
+schedule.lessons.lessons1.id,lesson 206
+schedule.lessons.lessons1.name,Математический анализ
+schedule.lessons.lessons1.lesson_type,Лекции
+schedule.lessons.lessons1.group,МАТ АН ПИиКТ 13
+schedule.lessons.lessons1.time.start,08:20
+schedule.lessons.lessons1.time.end,09:50
+schedule.lessons.lessons1.teacher_name,Правдин Константин Владимирович
+schedule.lessons.lessons1.place.campus,Кронверкский пр., д.49, лит.А
+schedule.lessons.lessons1.place.room,Ауд.Orange Classroom (1229)
+schedule.lessons.lessons1.place.distant,Очно - дистанционный
+schedule.lessons.lessons2.id,lesson 210
+schedule.lessons.lessons2.name,Математический анализ
+schedule.lessons.lessons2.lesson_type,Практические занятия
+schedule.lessons.lessons2.group,МАТ АН ПИиКТ 13.3
+schedule.lessons.lessons2.time.start,10:00
+schedule.lessons.lessons2.time.end,11:30
+schedule.lessons.lessons2.teacher_name,Блейхер Оксана Владимировна
+schedule.lessons.lessons2.place.campus,Кронверкский пр., д.49, лит.А
+schedule.lessons.lessons2.place.room,Ауд.2430
+schedule.lessons.lessons2.place.distant,Очно - дистанционный
+schedule.lessons.lessons3.id,lesson 217
+schedule.lessons.lessons3.name,Основы дискретной математики (базовый уровень)
+schedule.lessons.lessons3.lesson_type,Лекции
+schedule.lessons.lessons3.group,ДИСКР МАТ 2
+schedule.lessons.lessons3.time.start,11:40
+schedule.lessons.lessons3.time.end,13:10
+schedule.lessons.lessons3.teacher_name,Поляков Владимир Иванович
+schedule.lessons.lessons3.place.campus,Кронверкский пр., д.49, лит.А
+schedule.lessons.lessons3.place.room,Ауд.2337
+schedule.lessons.lessons3.place.distant,Очно - дистанционный
+schedule.lessons.lessons4.id,lesson 220
+schedule.lessons.lessons4.name,Основы дискретной математики (базовый уровень)
+schedule.lessons.lessons4.lesson_type,Практические занятия
+schedule.lessons.lessons4.group,ДИСКР МАТ 2.1
+schedule.lessons.lessons4.time.start,13:30
+schedule.lessons.lessons4.time.end,15:00
+schedule.lessons.lessons4.teacher_name,Поляков Владимир Иванович
+schedule.lessons.lessons4.place.campus,Кронверкский пр., д.49, лит.А
+schedule.lessons.lessons4.place.room,Ауд.2337
+schedule.lessons.lessons4.place.distant,Очно - дистанционный
+

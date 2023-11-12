@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schedule>
+<first>
+<day_number>2</day_number><week_number>11</week_number><date>"2023-11-07"</date><lessons>
+<lessons>
+<id>lesson 206</id><name>Математический анализ</name><lesson_type>Лекции</lesson_type><group>МАТ АН ПИиКТ 13</group><time>
+<start>08:20</start><end>09:50</end></time><teacher_name>Правдин Константин Владимирович</teacher_name><place>
+<campus>Кронверкский пр., д.49, лит.А</campus><room>Ауд.Orange Classroom (1229)</room><distant>Очно - дистанционный</distant></place>
+<id>lesson 210</id><name>Математический анализ</name><lesson_type>Практические занятия</lesson_type><group>МАТ АН ПИиКТ 13.3</group><time>
+<start>10:00</start><end>11:30</end></time><teacher_name>Блейхер Оксана Владимировна</teacher_name><place>
+<campus>Кронверкский пр., д.49, лит.А</campus><room>Ауд.2430</room><distant>Очно - дистанционный</distant></place></lessons><second>
+<day_number2>3</day_number2><week_number2>10</week_number2><date2>"2023-11-12"</date2><lessons>
+<lessons>
+<id>lesson 217</id><name>Основы дискретной математики (базовый уровень)</name><lesson_type>Лекции</lesson_type><group>ДИСКР МАТ 2</group><time>
+<start>11:40</start><end>13:10</end></time><teacher_name>Поляков Владимир Иванович</teacher_name><place>
+<campus>Кронверкский пр., д.49, лит.А</campus><room>Ауд.2337</room><distant>Очно - дистанционный</distant></place>
+<id>lesson 220</id><name>Основы дискретной математики (базовый уровень)</name><lesson_type>Практические занятия</lesson_type><group>ДИСКР МАТ 2.1</group><time>
+<start>13:30</start><end>15:00</end></time><teacher_name>Поляков Владимир Иванович</teacher_name><place>
+<campus>Кронверкский пр., д.49, лит.А</campus><room>Ауд.2337</room><distant>Очно - дистанционный</distant></place></lessons></lessons></second></lessons><second>
+<day_number2>3</day_number2><week_number2>10</week_number2><date2>"2023-11-12"</date2><lessons>
+<id>lesson 220</id><name>Основы дискретной математики (базовый уровень)</name><lesson_type>Практические занятия</lesson_type><group>ДИСКР МАТ 2.1</group><time>
+<start>13:30</start><end>15:00</end></time><teacher_name>Поляков Владимир Иванович</teacher_name><place>
+<campus>Кронверкский пр., д.49, лит.А</campus><room>Ауд.2337</room><distant>Очно - дистанционный</distant></place></lessons></second></first></schedule>
