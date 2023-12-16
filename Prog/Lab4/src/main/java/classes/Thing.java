@@ -1,15 +1,15 @@
 package classes;
 
 import exceptions.NullThingException;
-import interfaces.Do;
-import interfaces.Using;
+import interfaces.IDo;
+import interfaces.IUse;
 import other.Entity;
 import other.Moves;
 
 import java.util.Objects;
 
 
-public class Thing extends Entity implements Do, Using {
+public class Thing extends Entity implements IDo, IUse {
     public CurrentStatus status;
 
     public Thing(String name) {

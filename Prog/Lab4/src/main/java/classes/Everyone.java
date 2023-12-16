@@ -1,9 +1,9 @@
 package classes;
 
-import interfaces.Help;
+import interfaces.IHelp;
 import other.Moves;
 
-public class Everyone extends Human implements Help {
+public class Everyone extends Human implements IHelp {
     public Everyone(String name) {
         super(name);
     }
