@@ -19,6 +19,9 @@ public class Ticket {
     private TicketType type; //Поле может быть null
     private Venue venue; //Поле может быть null
 
+    /**
+     * Вспомогательный конструктор для создания наполненного класса
+     */
     public Ticket(String name, Coordinates coordinates,
                   float price, Integer discount,
                   String comment, TicketType type, Venue venue) {
@@ -33,6 +36,9 @@ public class Ticket {
         this.setVenue(venue);
     }
 
+    /**
+     * Пустой конструктор для добавления полей в несколько этапов
+     */
     public Ticket() {
 
     }

@@ -8,7 +8,7 @@ import java.util.HashMap;
 /**
  * Абстрактный класс-родитель для всех классов, служащих для выполнения команд
  */
-public abstract class Command {
+public abstract class Command implements Executable{
     /**
      * Поле, обозначающие, нужен ли команде аргумент или нет
      */

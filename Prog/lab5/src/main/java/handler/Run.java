@@ -5,7 +5,13 @@ import exceptions.IncorrectInputException;
 import handler.CommandHandler;
 import handler.terminalHandler;
 
+/**
+ * Класс для старта и перехода в интерактивный режим работы с пользователем
+ */
 public class Run {
+    /**
+     * enum, в котором хранятся exitCode, которые возвращаются в зависимости от успешности/не успешности завершения команды
+     */
     private enum exitCode {
         OK,
         ERROR,
@@ -13,9 +19,15 @@ public class Run {
         REPEAT;
     }
 
+    /**
+     * Пустой конструктор (т.к. класс не имеет полей)
+     */
     public Run() {
     }
 
+    /**
+     * Переход в интерактивный режим, в котором пользователь может вводить команды
+     */
     public void userCommandFetch() {
         exitCode currentCode;
         do {
@@ -29,9 +41,14 @@ public class Run {
                     currentCode = exitCode.REPEAT;
                 }
             }
-        } while (currentCode != exitCode.STOP); // Возможно, добавить сюда STOP при сохранении/выходе досрочном и проверять его ниже
+        } while (currentCode != exitCode.STOP);
     }
 
+    /**
+     * Метод для выполнения команды, введенной пользователей
+     * @param userCommand строка -- команда, которую ввел пользователь
+     * @return exitCode в зависимости от успешности/не успешности выполнения команды
+     */
     public exitCode executeCommand(String[] userCommand) {
         try {
             Command currentCommand = CommandHandler.getCommand(userCommand[0]);
@@ -40,10 +57,10 @@ public class Run {
                 return exitCode.ERROR;
             }
             if (userCommand.length == 1) {
-                if (currentCommand.execute(null)) terminalHandler.printlnA("Команда выполнена успешно");
+                if (currentCommand.execute(null)) terminalHandler.println("Команда выполнена успешно");
                 else terminalHandler.printlnA("!!!Ошибка при выполнении команды. Попробуйте снова.");
             } else {
-                if (currentCommand.execute(userCommand[1])) terminalHandler.printlnA("Команда выполнена успешно");
+                if (currentCommand.execute(userCommand[1])) terminalHandler.println("Команда выполнена успешно");
                 else terminalHandler.printlnA("!!!Ошибка при выполнении команды. Попробуйте снова.");
             }
         } catch (IncorrectInputException e) {

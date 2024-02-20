@@ -5,6 +5,9 @@ import handler.mapHandler;
 
 import java.util.HashMap;
 
+/**
+ * Команда для очистки коллекции
+ */
 public class Clear extends Command {
     public Clear() {
         super(false);

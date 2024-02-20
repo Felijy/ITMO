@@ -7,6 +7,9 @@ import handler.terminalHandler;
 
 import java.time.LocalDate;
 
+/**
+ * Команда для изменения в коллекции элемента по его ключу
+ */
 public class Update extends AddValue {
     private String key;
     private Ticket ticket;
@@ -56,7 +59,9 @@ public class Update extends AddValue {
     }
 
 
-    //можно сделать выплевывание исключения для выхода из цикла заполнения
+    /**
+     * Метод для старта добавления нового элемента. Получив ввод от пользователя, вызывает метод ValidateNew() в абстрактном супер-классе
+     */
     private String startAdding (String name, boolean canBeNull, Integer moreThen,
                                 Integer lessThen, boolean canBeEmptyString) {
         boolean isEnd;
@@ -70,7 +75,11 @@ public class Update extends AddValue {
         return currentInput;
     }
 
-
+    /**
+     * Метод для проверки, входит ли значение arg в Enum TicketType
+     * @param arg значение, которое нужно проверить
+     * @return true, если значение входит в enum, false -- в обратном случае
+     */
     private boolean checkTicketTypeEnum(String arg) {
         try {
             TicketType.valueOf(arg);
@@ -80,6 +89,11 @@ public class Update extends AddValue {
         return true;
     }
 
+    /**
+     * Метод для проверки, входит ли значение arg в Enum VenueType
+     * @param arg значение, которое нужно проверить
+     * @return true, если значение входит в enum, false -- в обратном случае
+     */
     private boolean checkVenueTypeEnum(String arg) {
         try {
             VenueType.valueOf(arg);

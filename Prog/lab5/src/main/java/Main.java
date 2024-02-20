@@ -8,10 +8,12 @@ import commandsHendler.commands.Insert;
 
 import java.util.HashMap;
 
-
+/**
+ * Основной класс, с которого начинается выполнение программы. Создает необходимые объекты классов и переходит в интерактивный режим
+ */
 public class Main {
     public static void main(String[] args) {
-        IOHandler ioHandler = new IOHandler("data.json");
+        IOHandler ioHandler = new IOHandler();
         Run run = new Run();
         mapHandler.setCollection((HashMap<String, Ticket>) ioHandler.getJSON());
         CommandHandler.addCommand("insert", new Insert());
@@ -25,6 +27,11 @@ public class Main {
         CommandHandler.addCommand("execute_script", new Execute());
         CommandHandler.addCommand("history", new History());
         CommandHandler.addCommand("count_by_price", new CountPrice());
+        CommandHandler.addCommand("info", new Info());
+        CommandHandler.addCommand("remove_grater_key", new RemoveGraterKey());
+        CommandHandler.addCommand("remove_any_by_comment", new RemoveByComment());
+        CommandHandler.addCommand("remove_grater", new RemoveGrater());
+        CommandHandler.addCommand("max_by_venue", new MaxVenue());
         run.userCommandFetch();
     }
 }

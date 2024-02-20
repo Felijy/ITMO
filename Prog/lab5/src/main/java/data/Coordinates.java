@@ -2,12 +2,15 @@ package data;
 
 import java.util.Objects;
 
+/**
+ * Вспомогательный класс, в котором хранятся координаты
+ */
 public class Coordinates {
     private float x; //Максимальное значение поля: 766
     private Float y; //Поле не может быть null
 
     /**
-     * Вспомогательный класс, в котором хранятся координаты
+     * Вспомогательный конструктор для создания наполненного класса
      * @param x значение по оси x. Value <= 766
      * @param y значение по оси y. Not null
      */
@@ -16,6 +19,9 @@ public class Coordinates {
         this.setY(y);
     }
 
+    /**
+     * Пустой конструктор для добавления полей в несколько этапов
+     */
     public Coordinates(){
 
     }

@@ -2,21 +2,17 @@ package commandsHendler.commands;
 
 import commandsHendler.AddValue;
 import data.*;
-import handler.IdHandler;
 import handler.mapHandler;
 import handler.terminalHandler;
 
 import java.time.LocalDate;
-import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Objects;
 
+/**
+ * Команда для добавления в коллекцию нового элемента
+ */
 public class Insert extends AddValue {
 
-    private String key;
-    private Ticket ticket;
-    private Venue venue;
-    private Coordinates coordinates;
 
     public Insert() {
         super(true);
@@ -24,14 +20,13 @@ public class Insert extends AddValue {
 
     @Override
     public boolean execute(String args) {
-        this.key = args;
-        if (!mapHandler.checkKey(key)) {
+        if (!mapHandler.checkKey(args)) {
             return false;
         }
-        terminalHandler.print("Начато добавление нового значения с ключом " + this.key + "\n");
-        ticket = new Ticket();
-        venue = new Venue();
-        coordinates = new Coordinates();
+        terminalHandler.print("Начато добавление нового значения с ключом " + args + "\n");
+        Ticket ticket = new Ticket();
+        Venue venue = new Venue();
+        Coordinates coordinates = new Coordinates();
         ticket.setName(startAdding("название билета (не пустое)", false, null, null, false));
         ticket.setPrice(Float.parseFloat(startAdding("цену (больше нуля)", false, 0, null, false)));
         try {
@@ -70,12 +65,14 @@ public class Insert extends AddValue {
         } else ticket.setVenue(null);
         ticket.setNewId();
         ticket.setCreationDate(LocalDate.now());
-        mapHandler.makeNewTicket(key, ticket);
+        mapHandler.makeNewTicket(args, ticket);
         return true;
     }
 
 
-    //можно сделать выплевывание исключения для выхода из цикла заполнения
+    /**
+     * Метод для старта добавления нового элемента. Получив ввод от пользователя, вызывает метод ValidateNew() в абстрактном супер-классе
+     */
     private String startAdding (String name, boolean canBeNull, Integer moreThen,
                                       Integer lessThen, boolean canBeEmptyString) {
         boolean isEnd;
@@ -89,7 +86,11 @@ public class Insert extends AddValue {
         return currentInput;
     }
 
-
+    /**
+     * Метод для проверки, входит ли значение arg в Enum TicketType
+     * @param arg значение, которое нужно проверить
+     * @return true, если значение входит в enum, false -- в обратном случае
+     */
     private boolean checkTicketTypeEnum(String arg) {
         try {
             TicketType.valueOf(arg);
@@ -99,6 +100,11 @@ public class Insert extends AddValue {
         return true;
     }
 
+    /**
+     * Метод для проверки, входит ли значение arg в Enum VenueType
+     * @param arg значение, которое нужно проверить
+     * @return true, если значение входит в enum, false -- в обратном случае
+     */
     private boolean checkVenueTypeEnum(String arg) {
         try {
             VenueType.valueOf(arg);

@@ -7,6 +7,9 @@ import handler.terminalHandler;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+/**
+ * Команда, которая выполняет скрип из файла так, если бы команды вводил пользователь
+ */
 public class Execute extends Command {
     public Execute() {
         super(true);

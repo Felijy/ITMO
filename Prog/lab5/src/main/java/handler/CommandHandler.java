@@ -9,8 +9,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Класс для работы с коммандами пользователя
+ */
 public class CommandHandler {
+    /**
+     * Коллекция для хранения всех команд с объектами этих команд
+     */
     private static final Map<String, Command> commands;
+
+    /**
+     * Коллекция для хранения истории команд
+     */
     private static List<String> history;
 
     static {
@@ -18,10 +28,21 @@ public class CommandHandler {
         history = new ArrayList<>();
     }
 
+    /**
+     * Метод для добавления в коллекцию команды
+     * @param commandName имя команды, то, как её будет вводить пользователь
+     * @param command ссылка на объект этой команды
+     */
     public static void addCommand(String commandName, Command command) {
         commands.put(commandName, command);
     }
 
+    /**
+     * Метод для получения команды по её названию
+     * @param arg название команды, введенное пользователем
+     * @return ссылку на объект команды
+     * @throws IncorrectInputException выбрасывается, если такой команды не существует
+     */
     public static Command getCommand(String arg) throws IncorrectInputException {
         var command = commands.get(arg);
         if (command == null) throw new IncorrectInputException();
@@ -33,6 +54,10 @@ public class CommandHandler {
         return commands;
     }
 
+    /**
+     * Метод для печати истории ввода последних N команд
+     * @param count количество команд, которые должны быть выведены
+     */
     public static void printHistory(int count) {
         terminalHandler.printlnA("Список последних 15 команд:");
         if (history.size() < count) {

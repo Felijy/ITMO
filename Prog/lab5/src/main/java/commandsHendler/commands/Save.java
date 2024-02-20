@@ -3,6 +3,9 @@ package commandsHendler.commands;
 import commandsHendler.Command;
 import handler.IOHandler;
 
+/**
+ * Команда для сохранения коллекции в JSON файл
+ */
 public class Save extends Command {
     public Save() {
         super(false);
@@ -10,7 +13,7 @@ public class Save extends Command {
 
     @Override
     public boolean execute(String args) {
-        IOHandler handler = new IOHandler("data.json");
+        IOHandler handler = new IOHandler();
         handler.makeJSON();
         return true;
     }

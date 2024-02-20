@@ -11,19 +11,15 @@ import data.Ticket;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Класс для работы с загрузкой и сохранением коллекции из/в JSON файл
+ */
 public class IOHandler {
-
     /**
-     * Переменная, которая хранит название JSON файла
+     * Пустой конструктор (класс не имеет полей, имя файла из переменной окружения)
      */
-    private final String fileName;
+    public IOHandler() {
 
-    /**
-     * Конструктор, устанавливающий название файла, которое поступает из переменной окружения
-     * @param fileName
-     */
-    public IOHandler(String fileName) {
-        this.fileName = fileName;
     }
 
     /**

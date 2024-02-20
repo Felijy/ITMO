@@ -4,11 +4,13 @@ import commandsHendler.Command;
 import handler.mapHandler;
 import handler.terminalHandler;
 
+/**
+ * Команда для подсчёта объектов, значение поля price которых соответствуют переданному в аргумент
+ */
 public class CountPrice extends Command {
     public CountPrice() {
         super(true);
     }
-
     @Override
     public boolean execute(String args) {
         var keys = mapHandler.getCollection().keySet();
@@ -31,6 +33,6 @@ public class CountPrice extends Command {
 
     @Override
     public String getName() {
-        return "count_by_price";
+        return "count_by_price <price>";
     }
 }

@@ -3,6 +3,9 @@ package commandsHendler.commands;
 import commandsHendler.Command;
 import handler.mapHandler;
 
+/**
+ * Команда для удаления элемента по ключу
+ */
 public class Remove extends Command {
     public Remove() {
         super(true);

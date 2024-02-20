@@ -4,7 +4,10 @@ import data.TicketType;
 
 import java.util.Objects;
 
-public abstract class AddValue extends Command {
+/**
+ * Абстрактный класс, являющиеся родительским для всех классов, добавляющих элементы в коллекцию
+ */
+public abstract class AddValue extends Command implements Executable {
     /**
      * Конструктор, устанавливающий значение полю anArgument
      *
@@ -14,7 +17,15 @@ public abstract class AddValue extends Command {
         super(arg);
     }
 
-    //true если все ок
+    /**
+     * Метод для валидации данных, которые должны быть добавлены в коллекцию
+     * @param obj строка -- то, что пользователь ввёл
+     * @param canBeNull может ли строка быть null
+     * @param moreThen должно ли число быть больше какого-то значения (если получаемые данные -- строка или число без ограничения сверху/снизу, то указывается null)
+     * @param lessThen должно ли число быть меньше какого-то значения (если получаемые данные -- строка или число без ограничения сверху/снизу, то указывается null)
+     * @param canBeEmptyString может ли строка быть пустой
+     * @return true, если валидация успешна, в ином случае -- false
+     */
     protected boolean validateNew (String obj, boolean canBeNull, Integer moreThen, Integer lessThen,
                                   boolean canBeEmptyString) {
         if ((!canBeNull) && (obj == null)) return false;

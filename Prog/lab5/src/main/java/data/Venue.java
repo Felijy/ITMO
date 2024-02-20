@@ -15,6 +15,9 @@ public class Venue {
     private VenueType type; //Поле не может быть null
 
 
+    /**
+     * Вспомогательный конструктор для создания наполненного класса
+     */
     public Venue(String name, Long capacity, VenueType type) {
         this.setNewId();
         this.setName(name);
@@ -22,6 +25,9 @@ public class Venue {
         this.setType(type);
     }
 
+    /**
+     * Пустой конструктор для создания пустого класса
+     */
     public Venue(){
 
     }

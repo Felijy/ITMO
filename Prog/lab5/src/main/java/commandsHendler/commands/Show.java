@@ -7,6 +7,9 @@ import handler.mapHandler;
 
 import java.util.HashMap;
 
+/**
+ * Команда для вывода всех элементов коллекции в строковом представлении
+ */
 public class Show extends Command {
 
     public Show() {
