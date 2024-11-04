@@ -1,0 +1,130 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx} % Required for inserting images
+
+
+\title{1}
+\author{Вячеслав Кулагин}
+\date{October 2023}
+\pagestyle{empty}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage[top=1cm,left=1cm,right=2cm, bottom=2cm]{geometry}
+\usepackage{tabularx}
+\usepackage{amsmath, xparse}
+\usepackage{amssymb}
+\usepackage{multirow}
+\pagestyle{plain}
+
+
+\begin{document}
+
+\begin{titlepage}
+\newpage
+
+\begin{center}
+федеральное государственное автономное образовательное
+учреждение
+высшего образования «Национальный исследовательский
+университет ИТМО»\\
+\end{center}
+
+\vspace{8em}
+
+\begin{center}
+\Large Факультет программной инженерии и компьютерной техники \\ 
+\end{center}
+
+\vspace{2em}
+
+\begin{center}
+\textsc{\textbf{Лабораторная работа по ОПД №2}}\\
+\Large Вариант 6543
+\end{center}
+
+\vspace{18em}
+
+
+
+\newbox{\lbox}
+\savebox{\lbox}{\hbox{Саржевский Иван Анатольевич}}
+\newlength{\maxl}
+\setlength{\maxl}{\wd\lbox}
+\hfill\parbox{11cm}{
+\hspace*{5cm}\hspace*{-5cm}Студент:\hfill\hbox to\maxl{Кулагин Вячеслав Дмитриевич\hfill}\\
+\hspace*{5cm}\hspace*{-5cm}Преподаватель:\hfill\hbox to\maxl{Саржевский Иван Анатольевич}\\
+\\
+\hspace*{5cm}\hspace*{-5cm}Поток:\hfill\hbox to\maxl{1.9}\\
+}
+
+
+\vspace{\fill}
+
+\begin{center}
+Санкт-Петербург \\2023
+\end{center}
+\end{titlepage}
+
+\section{Задание}
+По выданному преподавателем варианту определить функцию, вычисляемую программой, область представления и область допустимых значений исходных данных и результата, выполнить трассировку программы, предложить вариант с меньшим числом команд. При выполнении работы представлять результат и все операнды арифметических операций знаковыми числами, а логических операций набором из шестнадцати логических значений.\\
+\textbf{Исходные данные для варианта 6543:}\\
+\includegraphics[scale=1]{lab2.png} 
+\newpage
+\section{Процесс выполнения работы}
+\subsection{Текст исходной программы в виде таблицы}
+
+\texttt{
+\begin{tabular}{l|c|c|c|l|}
+\cline{2-5}
+ & \textbf{Адрес} & \textbf{Код команды} & \textbf{Мнемоника} & \textbf{Комментарии} \\ \cline{2-5} 
+ & 142 & E14F & $-$ & Данные $-$ переменная a \\ \cline{2-5} 
+ & 143 & 0280 & $-$ & Данные $-$ итоговый результат (b) \\ \cline{2-5} 
+ & 144 & E14F & $-$ & Данные $-$ переменная c \\ \cline{2-5} 
+\multicolumn{1}{c|}{\textbf{+}} & 145 & 0200 & CLA & 0 $\rightarrow$ AC (Обнуление аккумулятора) \\ \cline{2-5} 
+ & 146 & 0280 & NOT & $\overline{AC} \rightarrow AC$ (Отрицание значения в аккумуляторе) \\ \cline{2-5} 
+ & 147 & 2142 & AND 142 & 142 \& AC $\rightarrow$ AC (\& между аккумулятором и ячейкой 142) \\ \cline{2-5} 
+ & 148 & 214E & AND 14E & 14E \& AC $\rightarrow$ AC (\& между аккумулятором и ячейкой 14E) \\ \cline{2-5} 
+ & 149 & E14F & ST 14F & AC $\rightarrow$ 14F (Перемещение из аккумулятора в ячейку 14F) \\ \cline{2-5} 
+ & 14A & A144 & LD 144 & 144 $\rightarrow$ AC (Перемещение из ячейки 144 в аккумулятор) \\ \cline{2-5} 
+ & 14B & 414F & ADD 14F & 14F + AC $\rightarrow$ AC (Сложение ячейки 14F с аккумулятором) \\ \cline{2-5} 
+ & 14C & E143 & ST 143 & AC $\rightarrow$ 143 (Перемещение из аккумулятора в ячейку 143) \\ \cline{2-5} 
+ & 14D & 0100 & HLT & Останов \\ \cline{2-5} 
+ & 14E & 2142 & $-$ & Данные $-$ переменная d \\ \cline{2-5} 
+ & 14F & 414F & $-$ & Данные $-$ переменная e (временное хранение)\\ \cline{2-5} 
+\end{tabular}}
+
+\subsection{Описание программы}
+Общую формулу описанной программы можно записать так (исключив лишние переносы из ячейки в ячейку и аккумулятор):\\
+\begin{large}
+c $+$ (1 \& a \& d)\\
+\end{large}
+Однако она по сути может быть сокращена до:\\
+\begin{large}
+c $+$ (a \& d)\\
+\end{large}
+Результат выполнения записывается в ячейку 143\\
+Таким образом, данные располагаются в ячейках: 142, 143, 144, 14E, 14F\\
+А команды в ячейках: 145, 146, 147, 148, 149, 14A, 14B, 14C, 14D\\
+Первой выполняется команда в ячейке 145, последней $-$ в 14D
+
+\subsection{Таблица трассировки} 
+\begin{center}
+\texttt{
+\begin{tabular}{|cc|cccccccc|cc|}
+\hline
+\multicolumn{2}{|c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Выполняемая\\ команда\end{tabular}}} & \multicolumn{8}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Содержание регистров\\ после выполнения команды\end{tabular}}} & \multicolumn{2}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Ячейка, содержание\\ которой поменялось\end{tabular}}} \\ \hline
+\multicolumn{1}{|c|}{Адрес} & Код & \multicolumn{1}{c|}{IP} & \multicolumn{1}{c|}{CR} & \multicolumn{1}{c|}{AR} & \multicolumn{1}{c|}{DR} & \multicolumn{1}{c|}{SP} & \multicolumn{1}{c|}{BR} & \multicolumn{1}{c|}{AC} & N Z V C & \multicolumn{1}{c|}{Адрес} & Новый код \\ \hline
+\multicolumn{1}{|c|}{145} & 200 & \multicolumn{1}{c|}{146} & \multicolumn{1}{c|}{0200} & \multicolumn{1}{c|}{145} & \multicolumn{1}{c|}{0200} & \multicolumn{1}{c|}{000} & \multicolumn{1}{c|}{0145} & \multicolumn{1}{c|}{0000} & - Z - - & \multicolumn{1}{c|}{-} & - \\ \hline
+\multicolumn{1}{|c|}{146} & 280 & \multicolumn{1}{c|}{147} & \multicolumn{1}{c|}{0280} & \multicolumn{1}{c|}{146} & \multicolumn{1}{c|}{0280} & \multicolumn{1}{c|}{000} & \multicolumn{1}{c|}{0146} & \multicolumn{1}{c|}{FFFF} & N - - - & \multicolumn{1}{c|}{-} & - \\ \hline
+\multicolumn{1}{|c|}{147} & 2142 & \multicolumn{1}{c|}{148} & \multicolumn{1}{c|}{2142} & \multicolumn{1}{c|}{142} & \multicolumn{1}{c|}{E14F} & \multicolumn{1}{c|}{000} & \multicolumn{1}{c|}{0147} & \multicolumn{1}{c|}{E14F} & N - - - & \multicolumn{1}{c|}{-} & - \\ \hline
+\multicolumn{1}{|c|}{148} & 214E & \multicolumn{1}{c|}{149} & \multicolumn{1}{c|}{214E} & \multicolumn{1}{c|}{14E} & \multicolumn{1}{c|}{2142} & \multicolumn{1}{c|}{000} & \multicolumn{1}{c|}{0148} & \multicolumn{1}{c|}{2142} & - - - - & \multicolumn{1}{c|}{-} & - \\ \hline
+\multicolumn{1}{|c|}{149} & E14F & \multicolumn{1}{c|}{14A} & \multicolumn{1}{c|}{E14F} & \multicolumn{1}{c|}{14F} & \multicolumn{1}{c|}{2142} & \multicolumn{1}{c|}{000} & \multicolumn{1}{c|}{0149} & \multicolumn{1}{c|}{2142} & - - - - & \multicolumn{1}{c|}{14F} & 2142 \\ \hline
+\multicolumn{1}{|c|}{14A} & A144 & \multicolumn{1}{c|}{14B} & \multicolumn{1}{c|}{A144} & \multicolumn{1}{c|}{144} & \multicolumn{1}{c|}{E14F} & \multicolumn{1}{c|}{000} & \multicolumn{1}{c|}{014A} & \multicolumn{1}{c|}{E14F} & N - - - & \multicolumn{1}{c|}{-} & - \\ \hline
+\multicolumn{1}{|c|}{14B} & 414F & \multicolumn{1}{c|}{14C} & \multicolumn{1}{c|}{414F} & \multicolumn{1}{c|}{14F} & \multicolumn{1}{c|}{2142} & \multicolumn{1}{c|}{000} & \multicolumn{1}{c|}{014B} & \multicolumn{1}{c|}{0291} & - - - C & \multicolumn{1}{c|}{-} & - \\ \hline
+\multicolumn{1}{|c|}{14C} & E143 & \multicolumn{1}{c|}{14D} & \multicolumn{1}{c|}{E143} & \multicolumn{1}{c|}{143} & \multicolumn{1}{c|}{0291} & \multicolumn{1}{c|}{000} & \multicolumn{1}{c|}{014C} & \multicolumn{1}{c|}{0291} & - - - C & \multicolumn{1}{c|}{143} & 0291 \\ \hline
+\multicolumn{1}{|c|}{14D} & 0100 & \multicolumn{1}{c|}{14E} & \multicolumn{1}{c|}{0100} & \multicolumn{1}{c|}{14D} & \multicolumn{1}{c|}{0100} & \multicolumn{1}{c|}{000} & \multicolumn{1}{c|}{014D} & \multicolumn{1}{c|}{0291} & - - - C & \multicolumn{1}{c|}{-} & - \\ \hline
+\end{tabular}}
+\end{center}
+
+
+
+\end{document}

@@ -1,0 +1,375 @@
+BEGIN;
+CREATE TYPE FEELS_TYPE as enum ('POSITIVE', 'NEGATIVE', 'NEUTRAL');
+CREATE TYPE SEX as enum ('MALE', 'FEMALE');
+CREATE TYPE REQUEST_TYPE as enum ('QUESTION', 'COMMAND');
+CREATE TYPE RELATIONSHIPS_TYPE as enum ('FRIENDS', 'MARRIED', 'RELATIVES', 'ENEMIES');
+CREATE TYPE PLACE_TYPE as enum ('CITY', 'TOWN', 'VILLAGE');
+
+CREATE TABLE emotion (
+EMOTION_ID SERIAL PRIMARY KEY,
+NAME TEXT NOT NULL,
+TYPE FEELS_TYPE
+);
+
+CREATE TABLE felling
+(
+FEEL_ID SERIAL PRIMARY KEY,
+NAME TEXT NOT NULL,
+REASON TEXT,
+TYPE FEELS_TYPE,
+EMOTION_ID INT REFERENCES emotion(EMOTION_ID)
+);
+
+CREATE TABLE request (
+REQUEST_ID SERIAL PRIMARY KEY,
+NAME TEXT NOT NULL,
+TYPE REQUEST_TYPE,
+IS_ACCEPTED BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE phrase (
+PHRASE_ID SERIAL PRIMARY KEY,
+TEXT TEXT NOT NULL,
+REQUEST_ID INT REFERENCES request(REQUEST_ID)
+);
+
+CREATE TABLE aftermath (
+AFTERMATH_ID SERIAL PRIMARY KEY,
+NAME TEXT NOT NULL,
+IS_ENDED BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE action (
+ACTION_ID SERIAL PRIMARY KEY,
+NAME TEXT NOT NULL,
+REASON TEXT,
+AFTERMATH_ID INT REFERENCES aftermath(AFTERMATH_ID)
+);
+
+CREATE TABLE relationships (
+RELATIONSHIPS_ID SERIAL PRIMARY KEY,
+TYPE RELATIONSHIPS_TYPE,
+DURATION BIGINT CHECK ( DURATION > 0 ),
+IS_ENDED BOOLEAN NOT NULL
+);
+
+CREATE TABLE place (
+PLACE_ID SERIAL PRIMARY KEY,
+TYPE PLACE_TYPE,
+NAME TEXT,
+POPULATION BIGINT CHECK ( POPULATION >= 0 ),
+RATING FLOAT DEFAULT 5
+);
+
+
+CREATE TABLE human (
+HUMAN_ID SERIAL PRIMARY KEY,
+NAME TEXT NOT NULL,
+AGE INTEGER CHECK ( AGE BETWEEN 0 AND 100) NOT NULL,
+SEX SEX NOT NULL,
+PLACE_ID INT REFERENCES place(PLACE_ID),
+ACTION_ID INT REFERENCES action(ACTION_ID),
+FEEL_ID INT REFERENCES felling(FEEL_ID),
+EMOTION_ID INT REFERENCES emotion(EMOTION_ID),
+PHRASE_ID INT REFERENCES phrase(PHRASE_ID)
+);
+
+CREATE TABLE relationships_to_human (
+    HUMAN_ID INT REFERENCES human,
+    RELATIONSHIPS_ID INT REFERENCES relationships,
+    PRIMARY KEY (HUMAN_ID, RELATIONSHIPS_ID)
+);
+
+CREATE OR REPLACE FUNCTION check_feelings_type()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF EXISTS (
+        SELECT 1
+        FROM human h
+        JOIN felling f ON h.feel_id = f.FEEL_ID
+        JOIN place p ON h.place_id = p.PLACE_ID
+        WHERE p.name = 'Диаспар'
+        AND f.TYPE = 'NEGATIVE'
+    ) THEN
+        RAISE EXCEPTION 'Нельзя создать элемент human с негативными чувствами для места Диаспар';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER check_feelings_type_trigger
+BEFORE INSERT ON human
+FOR EACH ROW
+EXECUTE FUNCTION check_feelings_type();
+
+
+COMMIT;
+
+
+BEGIN;
+
+INSERT INTO aftermath(name, is_ended)
+VALUES ('он знал, к чему это приведёт', false);
+
+INSERT INTO action(name, reason, aftermath_id)
+VALUES ('смотрела молча', null, null), ('отрицательно мотнул головой', 'предложение Алистры', 1), ('растяла', 'разочарование', null);
+
+INSERT INTO emotion(name, type)
+VALUES ('изумление', 'NEUTRAL');
+
+INSERT INTO felling(name, reason, type, emotion_id)
+VALUES ('нежность', 'Олвину плохо', 'POSITIVE', null), ('плохо', null, 'NEUTRAL', null), ('разочарование', 'отказ Олвина', 'NEUTRAL', null);
+
+INSERT INTO request(name, type, is_accepted)
+VALUES ('Позволь прийти и поговорить', 'QUESTION', false);
+
+INSERT INTO phrase(text, request_id)
+VALUES ('Тебе плохо, Олвин, а в Диаспаре никому не должно быть плохо', 1);
+
+INSERT INTO place(type, name, population)
+VALUES ('CITY', 'Диаспар', 58390);
+
+INSERT INTO relationships(type, duration, is_ended)
+VALUES ('FRIENDS', 10, false);
+
+INSERT INTO human(name, age, sex, place_id, action_id, feel_id, emotion_id, phrase_id)
+VALUES ('Алистра', 30, 'FEMALE', 1, 3, 2, 1, 1), ('Олвин', 30, 'MALE', 1, 2, 3, null, null);
+
+INSERT INTO relationships_to_human(human_id, relationships_id)
+VALUES (1, 1);
+
+INSERT INTO relationships_to_human(human_id, relationships_id)
+VALUES (2, 1);
+
+INSERT INTO relationships(type, duration, is_ended)
+VALUES ('ENEMIES', 1, false);
+
+INSERT INTO relationships_to_human(human_id, relationships_id)
+VALUES (1, 2), (2, 2);
+
+COMMIT;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE OR REPLACE FUNCTION update_city_rating() RETURNS TRIGGER AS $$
+DECLARE
+    city_id INT;
+    relationship_type RELATIONSHIPS_TYPE;
+    city_rating FLOAT;
+BEGIN
+    SELECT h.PLACE_ID, r.TYPE INTO city_id, relationship_type
+    FROM human h
+    JOIN relationships_to_human rh ON h.HUMAN_ID = rh.HUMAN_ID
+    JOIN relationships r ON rh.RELATIONSHIPS_ID = r.RELATIONSHIPS_ID
+    WHERE rh.HUMAN_ID = NEW.HUMAN_ID AND rh.RELATIONSHIPS_ID = NEW.RELATIONSHIPS_ID;
+
+    SELECT RATING INTO city_rating FROM place WHERE PLACE_ID = city_id;
+
+    IF relationship_type = 'ENEMIES' THEN
+        city_rating := city_rating - 1.5;
+    ELSIF relationship_type = 'FRIENDS' THEN
+        city_rating := city_rating + 0.5;
+    ELSIF relationship_type = 'MARRIED' THEN
+        city_rating := city_rating + 1.0;
+    END IF;
+
+    UPDATE place SET RATING = city_rating WHERE PLACE_ID = city_id;
+
+        IF city_rating > 10 THEN
+            UPDATE emotion
+            SET TYPE = CASE
+                WHEN TYPE = 'NEGATIVE' THEN 'NEUTRAL'
+                WHEN TYPE = 'NEUTRAL' THEN 'POSITIVE'
+                ELSE TYPE
+            END
+            WHERE EMOTION_ID IN (
+                SELECT EMOTION_ID
+                FROM human
+                WHERE PLACE_ID = city_id
+            );
+
+            UPDATE felling
+            SET TYPE = CASE
+                WHEN TYPE = 'NEGATIVE' THEN 'NEUTRAL'
+                WHEN TYPE = 'NEUTRAL' THEN 'POSITIVE'
+                ELSE TYPE
+            END
+            WHERE FEEL_ID IN (
+                SELECT FEEL_ID
+                FROM human
+                WHERE PLACE_ID = city_id
+            );
+
+        ELSIF city_rating < 0 THEN
+            UPDATE felling
+            SET TYPE = 'NEGATIVE'
+            WHERE FEEL_ID IN (
+                SELECT FEEL_ID
+                FROM human
+                WHERE PLACE_ID = city_id
+            );
+
+            UPDATE emotion
+            SET TYPE = 'NEGATIVE'
+            WHERE EMOTION_ID IN (
+                SELECT EMOTION_ID
+                FROM human
+                WHERE PLACE_ID = city_id
+            );
+
+        ELSE
+        END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+CREATE TRIGGER trg_update_city_rating
+AFTER INSERT ON relationships_to_human
+FOR EACH ROW
+EXECUTE FUNCTION update_city_rating();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE OR REPLACE FUNCTION update_city_rating_on_delete() RETURNS TRIGGER AS $$
+DECLARE
+    city_id INT;
+    relationship_type TEXT;
+    city_rating FLOAT;
+BEGIN
+    SELECT h.PLACE_ID, r.TYPE INTO city_id, relationship_type
+    FROM human h
+    JOIN relationships r ON r.RELATIONSHIPS_ID = OLD.RELATIONSHIPS_ID
+    WHERE h.HUMAN_ID = OLD.HUMAN_ID;
+
+    SELECT RATING INTO city_rating FROM place WHERE PLACE_ID = city_id;
+
+    IF relationship_type = 'ENEMIES' THEN
+        city_rating := city_rating + 1.5;
+    ELSIF relationship_type = 'FRIENDS' THEN
+        city_rating := city_rating - 0.5;
+    ELSIF relationship_type = 'MARRIED' THEN
+        city_rating := city_rating - 1.0;
+    END IF;
+
+    UPDATE place SET RATING = city_rating WHERE PLACE_ID = city_id;
+
+    IF city_rating > 10 THEN
+        UPDATE emotion
+        SET TYPE = CASE
+            WHEN TYPE = 'NEGATIVE' THEN 'NEUTRAL'
+            WHEN TYPE = 'NEUTRAL' THEN 'POSITIVE'
+            ELSE TYPE
+        END
+        WHERE EMOTION_ID IN (
+            SELECT EMOTION_ID
+            FROM human
+            WHERE PLACE_ID = city_id
+        );
+
+        UPDATE felling
+        SET TYPE = CASE
+            WHEN TYPE = 'NEGATIVE' THEN 'NEUTRAL'
+            WHEN TYPE = 'NEUTRAL' THEN 'POSITIVE'
+            ELSE TYPE
+        END
+        WHERE FEEL_ID IN (
+            SELECT FEEL_ID
+            FROM human
+            WHERE PLACE_ID = city_id
+        );
+
+    ELSIF city_rating < 0 THEN
+        UPDATE felling
+        SET TYPE = 'NEGATIVE'
+        WHERE FEEL_ID IN (
+            SELECT FEEL_ID
+            FROM human
+            WHERE PLACE_ID = city_id
+        );
+
+        UPDATE emotion
+        SET TYPE = 'NEGATIVE'
+        WHERE EMOTION_ID IN (
+            SELECT EMOTION_ID
+            FROM human
+            WHERE PLACE_ID = city_id
+        );
+
+    END IF;
+
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+
+CREATE TRIGGER trigger_update_city_rating_on_delete
+AFTER DELETE ON relationships_to_human
+FOR EACH ROW
+EXECUTE FUNCTION update_city_rating_on_delete();
+
+
+

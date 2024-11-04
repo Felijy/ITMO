@@ -1,0 +1,59 @@
+ORG 0x50
+PLUS: WORD 0xDEAD 
+MINUS: WORD 0xD00D
+ARRAY: WORD 7,2,4,0xDEAD,1,0xDEAD,2,0xD00D ;исходный массив
+CURRENT_ADR: WORD ? ;адрес текущей ячейки массива
+COUNTER: WORD ? ;количество оставшихся элементов
+RES: WORD ? ;промежуточные результаты
+
+START:
+		LD #0x52
+		PUSH	
+		CALL F_ARRAY ;вызов подрограммы с передачей ей адреса 1 эл. массива
+		HLT
+		
+
+F_ARRAY:
+		LD &1
+		ST CURRENT_ADR
+		LD (CURRENT_ADR)
+		ST COUNTER
+		LD CURRENT_ADR
+		INC
+		ST CURRENT_ADR ;первая ячейка в COUNTER, CURRENT_ADR ставится на первое число в массиве
+		CONTINUE_LOOP:
+			LD (CURRENT_ADR)+
+			CMP PLUS
+			BEQ ADD_NUMBER ;проверка на +, переход
+			CMP MINUS
+			BEQ SUB_NUMBER  ;проверка на -, переход
+			JUMP STEK_NUMBER ;если элемент - не операция, переход к добавлению
+	
+			ADD_NUMBER: ;складывание двух верхних чисел, результат наверх стека
+				POP
+				ADD &0
+				ST RES
+				POP
+				LD RES
+				PUSH
+				JUMP CHECK_LOOP
+	
+			SUB_NUMBER: ;вычитание из SP-1 SP-0, результат на вершину
+				LD &1
+				SUB &0
+				ST RES
+				POP
+				POP
+				LD RES
+				PUSH
+				JUMP CHECK_LOOP
+	
+			STEK_NUMBER: ;добавление числа в стек, если число - не операция
+				PUSH
+				JUMP CHECK_LOOP
+	
+			CHECK_LOOP: ;проверка продолжения цикла, возврат, если цикл закончен
+				LOOP COUNTER
+				JUMP CONTINUE_LOOP
+				POP
+				RET
