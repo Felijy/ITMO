@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Основная страница</title>
+    <h:outputScript library="js" name="graph.js" />
+    <h:outputStylesheet library="css" name="main.css" />
+</h:head>
+<h:body>
+    <h:form id="formId">
+        <h1>Проверка попадания точки в область</h1>
+
+        <br />
+        <h:commandLink value="Вернуться на стартовую страницу" action="index?faces-redirect=true" />
+        <br />
+
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputLabel value="X:" />
+            <p:selectOneMenu value="#{mainBean.x}" id="x">
+                <f:selectItems value="#{mainBean.xValues}" />
+            </p:selectOneMenu>
+
+            <h:outputLabel value="Y:" />
+            <h:inputText value="#{mainBean.y}" id="y">
+                <f:validateDoubleRange minimum="-3" maximum="5" />
+            </h:inputText>
+
+            <h:outputLabel value="R:" />
+            <h:panelGroup>
+                <ui:repeat value="#{mainBean.availableRValues}" var="rValue">
+                    <h:commandLink value="#{rValue}" action="#{mainBean.setR(rValue)}" update="rValue,resultsTable,graphData"  onevent="updateGraph" />
+                    <h:outputText value=" " />
+                </ui:repeat>
+            </h:panelGroup>
+        </h:panelGrid>
+        <h:outputText value="Текущее значение R: " />
+        <h:outputText value="#{mainBean.r}" id="rValue"/>
+        <br />
+
+
+        <h:commandButton value="Добавить" action="#{mainBean.checkPoint()}"
+                         update="resultsTable,graphData">
+            <f:ajax execute="@form" render="graphData resultsTable graphCanvas" onevent="updateGraph" />
+        </h:commandButton>
+
+
+        <h:outputText id="graphData" style="display:none;"
+                      value="#{resultsBean.jsonResults}" />
+        <br /><br />
+
+        <canvas id="graphCanvas" width="400" height="400"></canvas>
+
+        <br />
+
+        <h:dataTable value="#{resultsBean.results}" var="point" border="1" cellpadding="5" id="resultsTable">
+            <h:column>
+                <f:facet name="header">X</f:facet>
+                #{point.x}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Y</f:facet>
+                #{point.y}
+            </h:column>
+            <h:column>
+                <f:facet name="header">R</f:facet>
+                #{point.r}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Результат</f:facet>
+                #{point.hit ? 'Попадание' : 'Промах'}
+            </h:column>
+        </h:dataTable>
+
+        <h:inputHidden id="hiddenX" value="#{mainBean.hiddenX}" />
+        <h:inputHidden id="hiddenY" value="#{mainBean.hiddenY}" />
+
+
+        <h:commandButton id="submitPoint" value="Отправить координаты" style="display:none;"
+                            action="#{mainBean.addPointFromGraph}" update="resultsTable graphData">
+            <f:ajax execute="@form" render="resultsTable graphData graphCanvas" onevent="updateGraph" />
+        </h:commandButton>
+    </h:form>
+</h:body>
+</html>
