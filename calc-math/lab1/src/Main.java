@@ -1,36 +1,42 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        DecimalFormat decimalFormat = new DecimalFormat();
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setDecimalSeparator(',');
+        symbols.setGroupingSeparator('.');
+        decimalFormat.setDecimalFormatSymbols(symbols);
         Scanner scanner = null;
         boolean fromFile = false;
         Random random = new Random();
 
         boolean isRandom = false;
 
-        if (args.length > 0) {
-            if (args[0].equalsIgnoreCase("random")) {
+        try {
+            scanner = new Scanner(System.in);
+            System.out.println("Выберите режим работы:\n1 - Ввод вручную\n2 - Ввод из файла\n3 - Рандомный ввод");
+            int num = scanner.nextInt();
+            if (num == 3) {
                 isRandom = true;
-                System.out.println("Генерация случайной матрицы и вектора.");
                 scanner = new Scanner(System.in);
-            } else {
+            } else if (num == 2) {
+                System.out.println("Введите имя файла:");
                 try {
-                    scanner = new Scanner(new File(args[0]));
-                    fromFile = true;
-                    System.out.println("Чтение данных из файла: " + args[0]);
+                    String input = scanner.next();
+                    scanner = new Scanner(new File(input));
                 } catch (FileNotFoundException e) {
-                    System.out.println("Ошибка: файл не найден!");
+                    System.out.println("Указанный файл не удалось найти");
                     return;
                 }
+            } else {
+                scanner = new Scanner(System.in);
             }
-        } else {
-            scanner = new Scanner(System.in);
-        }
-
-        try {
             if (!isRandom) {
                 System.out.println("Введите необходимую точность (степень 10, не больше -1, не меньше -15), по умолчанию: -6");
                 String epsilonInput = scanner.nextLine().trim();
@@ -88,11 +94,11 @@ public class Main {
                 System.out.println("Введите коэффициенты матрицы построчно (без свободных членов!):");
                 for (int i = 0; i < n; i++) {
                     for (int j = 0; j < n; j++) {
-                        if (!scanner.hasNextDouble()) {
+                        try {
+                            matrix[i][j] = parseDouble(scanner);
+                        } catch (NumberFormatException e) {
                             System.out.println("Ошибка: ожидалось число в матрице (строка " + (i + 1) + ", столбец " + (j + 1) + ")");
-                            return;
                         }
-                        matrix[i][j] = scanner.nextDouble();
                     }
                 }
 
@@ -144,5 +150,10 @@ public class Main {
                 scanner.close();
             }
         }
+    }
+
+    private static double parseDouble(Scanner input) {
+        String line = input.next();
+        return Double.parseDouble(line.replaceAll(",", "."));
     }
 }

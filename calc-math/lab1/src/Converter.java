@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class Converter {
     public static RearrangedSystem rearrangeMatrix(double[][] matrix, double[] vector) {
         int size = matrix.length;
-        int[] rowIndexes = new int[size]; // Индексы строк
+        int[] rowIndexes = new int[size];
         for (int i = 0; i < size; i++) {
             rowIndexes[i] = i;
         }
@@ -37,9 +37,9 @@ public class Converter {
     }
 
     private static void swap(int[] arr, int i, int j) {
-        int temp = arr[i];
+        int t = arr[i];
         arr[i] = arr[j];
-        arr[j] = temp;
+        arr[j] = t;
     }
 
     public static class RearrangedSystem {
