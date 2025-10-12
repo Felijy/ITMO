@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/HttpUnit/lib/httpunit.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HttpUnit/lib/xerces-2.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HttpUnit/lib/junit.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HttpUnit/lib/js.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HttpUnit/lib/nekohtml.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HttpUnit/lib/xercesImpl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HttpUnit/lib/xmlParserAPIs.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HttpUnit/lib/servlet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/HttpUnit/lib/Tidy.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

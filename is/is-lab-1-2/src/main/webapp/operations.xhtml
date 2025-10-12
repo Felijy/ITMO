@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Operations</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <script>
+        function opsUpdate() {
+            var btn = document.getElementById('opsForm:refreshOps');
+            if (window.jsf &amp;&amp; btn) {
+                jsf.ajax.request(btn, null, {execute: 'opsForm:refreshOps', render: 'opsForm opsGrowl'});
+            } else {
+                location.reload();
+            }
+        }
+
+        var ws;
+        window.addEventListener('load', function () {
+            ws = new WebSocket((location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + window.location.pathname.replace(/\/[^/]*$/, '') + '/city-updates');
+            ws.onmessage = function (e) {
+                if (e.data === 'update') {
+                    opsUpdate();
+                }
+            };
+        });
+    </script>
+</h:head>
+<h:body>
+    <h:messages id="opsGrowl" styleClass="messages global" infoClass="info" errorClass="error"/>
+    <h:link outcome="index" value="Back" styleClass="btn secondary"/>
+    <h:form id="opsForm" styleClass="panel">
+        <h:commandButton id="refreshOps" action="#{operationBean.refresh}" style="display:none"/>
+        <h2>Sum telephone codes</h2>
+        <div class="flex">
+            <h:commandButton styleClass="btn" value="Calculate" action="#{operationBean.calcSum}"><f:ajax
+                    render="opsForm opsGrowl"/></h:commandButton>
+            <h:outputText value=" #{operationBean.sumTelephone}" rendered="#{operationBean.sumTelephone gt 0}"/>
+        </div>
+        <h2>Names starting with</h2>
+        <div class="flex">
+            <span>Prefix:</span> <h:inputText id="prefix" value="#{operationBean.prefix}"/>
+            <h:commandButton styleClass="btn" value="Search" action="#{operationBean.findByPrefix}"><f:ajax
+                    execute="@this prefix" render="opsForm opsGrowl"/></h:commandButton>
+        </div>
+        <h:dataTable value="#{operationBean.prefixResult}" var="c" rendered="#{not empty operationBean.prefixResult}"
+                     styleClass="data-table">
+            <h:column><f:facet name="header">Id</f:facet>#{c.id}</h:column>
+            <h:column><f:facet name="header">Name</f:facet>#{c.name}</h:column>
+        </h:dataTable>
+        <h2>MASL greater than</h2>
+        <div class="flex">
+            <span>Value:</span> <h:inputText id="masl" value="#{operationBean.masl}"/>
+            <h:commandButton styleClass="btn" value="Filter" action="#{operationBean.findByMasl}"><f:ajax
+                    execute="@this masl" render="opsForm opsGrowl"/></h:commandButton>
+        </div>
+        <h:dataTable value="#{operationBean.maslResult}" var="c" rendered="#{not empty operationBean.maslResult}"
+                     styleClass="data-table">
+            <h:column><f:facet name="header">Id</f:facet>#{c.id}</h:column>
+            <h:column><f:facet name="header">Name</f:facet>#{c.name}</h:column>
+            <h:column><f:facet name="header">MASL</f:facet>#{c.metersAboveSeaLevel}</h:column>
+        </h:dataTable>
+        <h2>Distance between two cities</h2>
+        <div class="flex">
+            <span>City A ID:</span> <h:inputText id="cityA" value="#{operationBean.cityA}"/>
+            <span>City B ID:</span> <h:inputText id="cityB" value="#{operationBean.cityB}"/>
+            <h:commandButton styleClass="btn" value="Distance" action="#{operationBean.calcDistance}"><f:ajax
+                    execute="@this cityA cityB" render="opsForm opsGrowl"/></h:commandButton>
+            <h:outputText value=" #{operationBean.distanceAB}" rendered="#{operationBean.distanceAB ne null}"/>
+        </div>
+        <h2>Distance earliest-latest establishment</h2>
+        <div class="flex">
+            <h:commandButton styleClass="btn" value="Calculate" action="#{operationBean.calcEarliestLatest}"><f:ajax
+                    render="opsForm opsGrowl"/></h:commandButton>
+            <h:outputText value=" #{operationBean.distanceEarliestLatest}"
+                          rendered="#{operationBean.distanceEarliestLatest ne null}"/>
+        </div>
+    </h:form>
+</h:body>
+</html>

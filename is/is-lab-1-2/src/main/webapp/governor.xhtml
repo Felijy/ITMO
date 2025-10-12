@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+<h:head>
+    <title>Governor Details</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+    <h:messages styleClass="messages global" infoClass="info" errorClass="error"/>
+    <h:panelGroup rendered="#{cityBean.hasGovernor}" styleClass="panel">
+        <h2>Governor of city: #{cityBean.governorCity.name}</h2>
+        <p><strong>Name:</strong> #{cityBean.governorCity.governor.name}</p>
+        <p><strong>Birthday:</strong> <h:outputText value="#{cityBean.governorCity.governor.birthday}"
+                                                    converter="localDateOnly"/></p>
+        <h3>City main information</h3>
+        <ul>
+            <li>ID: #{cityBean.governorCity.id}</li>
+            <li>Area: #{cityBean.governorCity.area}</li>
+            <li>Population: #{cityBean.governorCity.population}</li>
+            <li>Climate: #{cityBean.governorCity.climate}</li>
+            <li>Standard: #{cityBean.governorCity.standardOfLiving}</li>
+        </ul>
+    </h:panelGroup>
+    <h:panelGroup rendered="#{not cityBean.hasGovernor}" styleClass="panel info-box">
+        No governor selected.
+    </h:panelGroup>
+    <h:form>
+        <h:commandLink action="#{cityBean.backFromGovernor}" value="Back" styleClass="btn secondary"/>
+    </h:form>
+</h:body>
+</html>
+

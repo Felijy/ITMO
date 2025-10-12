@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Cities</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <script>
+        function wsUpdate() {
+            var form = document.getElementById('table');
+            if (window.jsf &amp;&amp; form) {
+                jsf.ajax.request(form, null, {render: 'table growl'});
+            } else {
+                location.reload();
+            }
+        }
+    </script>
+</h:head>
+<h:body>
+    <h:messages id="growl" styleClass="messages global" infoClass="info" errorClass="error"/>
+    <h:form id="controls" styleClass="panel controls-inline">
+        <h:commandLink value="Create" action="#{cityBean.createForm}" styleClass="btn"/>
+        <h:link outcome="operations" value="Operations" styleClass="btn secondary"/>
+        <span>Filter:</span>
+        <h:selectOneMenu value="#{cityBean.filterField}">
+            <f:selectItem itemValue="" itemLabel="None"/>
+            <f:selectItem itemValue="id" itemLabel="Id"/>
+            <f:selectItem itemValue="name" itemLabel="Name"/>
+            <f:selectItem itemValue="creationDate" itemLabel="Creation"/>
+            <f:selectItem itemValue="area" itemLabel="Area"/>
+            <f:selectItem itemValue="population" itemLabel="Population"/>
+            <f:selectItem itemValue="establishmentDate" itemLabel="Establish"/>
+            <f:selectItem itemValue="capital" itemLabel="Capital"/>
+            <f:selectItem itemValue="metersAboveSeaLevel" itemLabel="MASL"/>
+            <f:selectItem itemValue="telephoneCode" itemLabel="TelCode"/>
+            <f:selectItem itemValue="climate" itemLabel="Climate"/>
+            <f:selectItem itemValue="standardOfLiving" itemLabel="Standard"/>
+            <f:selectItem itemValue="governorName" itemLabel="Governor"/>
+            <f:ajax event="change" listener="#{cityBean.applyFilter}" render="table"/>
+        </h:selectOneMenu>
+        <h:inputText value="#{cityBean.filterValue}">
+            <f:ajax event="keyup" delay="400" listener="#{cityBean.applyFilter}" render="table"/>
+        </h:inputText>
+        <h:commandButton value="Reset" actionListener="#{cityBean.setFilterValue('')}" styleClass="btn">
+            <f:ajax render="table"/>
+        </h:commandButton>
+    </h:form>
+    <h:form id="table" styleClass="panel table-wrapper">
+        <h:dataTable value="#{cityBean.cities}" var="c" styleClass="data-table" rendered="#{not empty cityBean.cities}">
+            <h:column>
+                <f:facet name="header"><h:commandLink value="Id" action="#{cityBean.setSortField('id')}"
+                                                      styleClass="#{cityBean.sortField eq 'id' ? (cityBean.asc ? 'hdr sorted asc':'hdr sorted desc') : 'hdr'}"><f:ajax
+                        render="table"/></h:commandLink></f:facet>
+                #{c.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:commandLink value="Name" action="#{cityBean.setSortField('name')}"
+                                                      styleClass="#{cityBean.sortField eq 'name' ? (cityBean.asc ? 'hdr sorted asc':'hdr sorted desc') : 'hdr'}"><f:ajax
+                        render="table"/></h:commandLink></f:facet>
+                #{c.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:commandLink value="Creation" action="#{cityBean.setSortField('creationDate')}"
+                                                      styleClass="#{cityBean.sortField eq 'creationDate' ? (cityBean.asc ? 'hdr sorted asc':'hdr sorted desc') : 'hdr'}"><f:ajax
+                        render="table"/></h:commandLink></f:facet>
+                #{c.creationDate}
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:commandLink value="Area" action="#{cityBean.setSortField('area')}"
+                                                      styleClass="#{cityBean.sortField eq 'area' ? (cityBean.asc ? 'hdr sorted asc':'hdr sorted desc') : 'hdr'}"><f:ajax
+                        render="table"/></h:commandLink></f:facet>
+                #{c.area}
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:commandLink value="Population" action="#{cityBean.setSortField('population')}"
+                                                      styleClass="#{cityBean.sortField eq 'population' ? (cityBean.asc ? 'hdr sorted asc':'hdr sorted desc') : 'hdr'}"><f:ajax
+                        render="table"/></h:commandLink></f:facet>
+                #{c.population}
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:commandLink value="Establish"
+                                                      action="#{cityBean.setSortField('establishmentDate')}"
+                                                      styleClass="#{cityBean.sortField eq 'establishmentDate' ? (cityBean.asc ? 'hdr sorted asc':'hdr sorted desc') : 'hdr'}"><f:ajax
+                        render="table"/></h:commandLink></f:facet>
+                #{c.establishmentDate}
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:commandLink value="Capital" action="#{cityBean.setSortField('capital')}"
+                                                      styleClass="#{cityBean.sortField eq 'capital' ? (cityBean.asc ? 'hdr sorted asc':'hdr sorted desc') : 'hdr'}"><f:ajax
+                        render="table"/></h:commandLink></f:facet>
+                #{c.capital}
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:commandLink value="MASL"
+                                                      action="#{cityBean.setSortField('metersAboveSeaLevel')}"
+                                                      styleClass="#{cityBean.sortField eq 'metersAboveSeaLevel' ? (cityBean.asc ? 'hdr sorted asc':'hdr sorted desc') : 'hdr'}"><f:ajax
+                        render="table"/></h:commandLink></f:facet>
+                #{c.metersAboveSeaLevel}
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:commandLink value="TelCode" action="#{cityBean.setSortField('telephoneCode')}"
+                                                      styleClass="#{cityBean.sortField eq 'telephoneCode' ? (cityBean.asc ? 'hdr sorted asc':'hdr sorted desc') : 'hdr'}"><f:ajax
+                        render="table"/></h:commandLink></f:facet>
+                #{c.telephoneCode}
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:commandLink value="Climate" action="#{cityBean.setSortField('climate')}"
+                                                      styleClass="#{cityBean.sortField eq 'climate' ? (cityBean.asc ? 'hdr sorted asc':'hdr sorted desc') : 'hdr'}"><f:ajax
+                        render="table"/></h:commandLink></f:facet>
+                #{c.climate}
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:commandLink value="Standard"
+                                                      action="#{cityBean.setSortField('standardOfLiving')}"
+                                                      styleClass="#{cityBean.sortField eq 'standardOfLiving' ? (cityBean.asc ? 'hdr sorted asc':'hdr sorted desc') : 'hdr'}"><f:ajax
+                        render="table"/></h:commandLink></f:facet>
+                #{c.standardOfLiving}
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:commandLink value="Governor" action="#{cityBean.setSortField('governorName')}"
+                                   styleClass="#{cityBean.sortField eq 'governorName' ? (cityBean.asc ? 'hdr sorted asc':'hdr sorted desc') : 'hdr'}">
+                        <f:ajax render="table"/>
+                    </h:commandLink>
+                </f:facet>
+                <h:panelGroup rendered="#{c.governor ne null}">
+                    <h:commandLink value="#{c.governor.name}" action="#{cityBean.viewGovernor(c.id)}"
+                                   styleClass="btn mini"/>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{c.governor eq null}">—</h:panelGroup>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Actions</f:facet>
+                <h:commandLink value="Edit" action="#{cityBean.edit(c.id)}" styleClass="btn mini"/>
+                <h:commandButton value="Delete" action="#{cityBean.delete(c.id)}" styleClass="btn danger mini"
+                                 onclick="if(!confirm('Delete?')) return false;">
+                    <f:ajax render="table growl"/>
+                </h:commandButton>
+            </h:column>
+        </h:dataTable>
+        <h:panelGroup rendered="#{empty cityBean.cities}">
+            <div class="info-box">No cities to display.</div>
+        </h:panelGroup>
+        <div class="flex pager" style="margin-top:10px;" rendered="#{not empty cityBean.cities}">
+            <h:commandButton value="Prev" action="#{cityBean.prevPage}" styleClass="btn"><f:ajax
+                    render="table"/></h:commandButton>
+            <span>Page #{cityBean.currentPage+1} / #{cityBean.totalPages}</span>
+            <h:commandButton value="Next" action="#{cityBean.nextPage}" styleClass="btn"><f:ajax
+                    render="table"/></h:commandButton>
+        </div>
+    </h:form>
+    <script>
+        var ws = new WebSocket((location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + window.location.pathname.replace(/\/[^/]*$/, '') + '/city-updates');
+        ws.onmessage = function (e) {
+            if (e.data === 'update') {
+                wsUpdate();
+            }
+        };
+    </script>
+</h:body>
+</html>

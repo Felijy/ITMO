@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+    <title>Create City</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+    <h:form id="createForm" styleClass="panel">
+        <h:messages styleClass="messages" infoClass="info" errorClass="error"/>
+        <h:panelGrid columns="3" columnClasses="lbl,val,msg">
+            <h:outputLabel for="name" value="Name" styleClass="required"/>
+            <h:inputText id="name" value="#{cityBean.current.name}" label="Name" required="true"
+                         requiredMessage="Name is required"
+                         styleClass="#{empty facesContext.getMessageList('createForm:name') ? '' : 'invalid'}"/>
+            <h:message for="name" styleClass="field-msg"/>
+
+            <h:outputLabel for="x" value="X" styleClass="required"/>
+            <h:inputText id="x" value="#{cityBean.current.coordinates.x}" label="X" required="true"
+                         requiredMessage="X is required" converterMessage="X must be a number"
+                         styleClass="#{empty facesContext.getMessageList('createForm:x') ? '' : 'invalid'}"/>
+            <h:message for="x" styleClass="field-msg"/>
+
+            <h:outputLabel for="y" value="Y" styleClass="required"/>
+            <h:inputText id="y" value="#{cityBean.current.coordinates.y}" label="Y" required="true"
+                         requiredMessage="Y is required" converterMessage="Y must be a number"
+                         styleClass="#{empty facesContext.getMessageList('createForm:y') ? '' : 'invalid'}"/>
+            <h:message for="y" styleClass="field-msg"/>
+
+            <h:outputLabel for="area" value="Area" styleClass="required"/>
+            <h:inputText id="area" value="#{cityBean.current.area}" label="Area" required="true"
+                         requiredMessage="Area is required" converterMessage="Area must be a positive number"
+                         styleClass="#{empty facesContext.getMessageList('createForm:area') ? '' : 'invalid'}"/>
+            <h:message for="area" styleClass="field-msg"/>
+
+            <h:outputLabel for="population" value="Population" styleClass="required"/>
+            <h:inputText id="population" value="#{cityBean.current.population}" label="Population" required="true"
+                         requiredMessage="Population is required" converterMessage="Population must be a whole number"
+                         styleClass="#{empty facesContext.getMessageList('createForm:population') ? '' : 'invalid'}"/>
+            <h:message for="population" styleClass="field-msg"/>
+
+            <h:outputLabel for="est" value="Establishment"/>
+            <h:inputText id="est" value="#{cityBean.current.establishmentDate}" label="Establishment" pt:type="date"
+                         converter="localDateOnly" converterMessage="Use format yyyy-MM-dd"
+                         styleClass="#{empty facesContext.getMessageList('createForm:est') ? '' : 'invalid'}"/>
+            <h:message for="est" styleClass="field-msg"/>
+
+            <h:outputLabel for="capital" value="Capital"/>
+            <h:selectBooleanCheckbox id="capital" value="#{cityBean.current.capital}"/>
+            <h:outputText/>
+
+            <h:outputLabel for="masl" value="MASL"/>
+            <h:inputText id="masl" value="#{cityBean.current.metersAboveSeaLevel}" label="MASL"
+                         converterMessage="MASL must be a number"
+                         styleClass="#{empty facesContext.getMessageList('createForm:masl') ? '' : 'invalid'}"/>
+            <h:message for="masl" styleClass="field-msg"/>
+
+            <h:outputLabel for="tel" value="Telephone Code" styleClass="required"/>
+            <h:inputText id="tel" value="#{cityBean.current.telephoneCode}" label="Telephone Code" required="true"
+                         requiredMessage="Telephone code is required" converterMessage="Telephone code must be a number"
+                         styleClass="#{empty facesContext.getMessageList('createForm:tel') ? '' : 'invalid'}"/>
+            <h:message for="tel" styleClass="field-msg"/>
+
+            <h:outputLabel for="climate" value="Climate"/>
+            <h:selectOneMenu id="climate" value="#{cityBean.current.climate}">
+                <f:selectItem itemValue="" itemLabel="None"/>
+                <f:selectItems value="#{cityBean.climates}"/>
+            </h:selectOneMenu>
+            <h:outputText/>
+
+            <h:outputLabel for="standard" value="Standard" styleClass="required"/>
+            <h:selectOneMenu id="standard" value="#{cityBean.current.standardOfLiving}" label="Standard" required="true"
+                             requiredMessage="Standard is required"
+                             styleClass="#{empty facesContext.getMessageList('createForm:standard') ? '' : 'invalid'}">
+                <f:selectItems value="#{cityBean.standards}"/>
+            </h:selectOneMenu>
+            <h:message for="standard" styleClass="field-msg"/>
+
+            <h:outputLabel for="govName" value="Governor Name"/>
+            <h:inputText id="govName" value="#{cityBean.governorName}" label="Governor Name"/>
+            <h:outputText/>
+
+            <h:outputLabel for="govBirth" value="Governor Birthday"/>
+            <h:inputText id="govBirth" value="#{cityBean.governorBirthday}" label="Governor Birthday" pt:type="date"
+                         converter="localDateOnly" converterMessage="Use format yyyy-MM-dd"
+                         styleClass="#{empty facesContext.getMessageList('createForm:govBirth') ? '' : 'invalid'}"/>
+            <h:message for="govBirth" styleClass="field-msg"/>
+        </h:panelGrid>
+        <div class="flex" style="margin-top:10px;">
+            <h:commandButton styleClass="btn" value="Save" action="#{cityBean.saveNew}"/>
+            <h:link styleClass="btn secondary" outcome="index" value="Back"/>
+        </div>
+    </h:form>
+</h:body>
+</html>

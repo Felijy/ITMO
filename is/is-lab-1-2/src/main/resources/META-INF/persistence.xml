@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.1">
+    <persistence-unit name="cityPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>web.lab.islab12.model.City</class>
+        <class>web.lab.islab12.model.Coordinates</class>
+        <class>web.lab.islab12.model.Human</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://pg:5432/studs"/>
+            <property name="jakarta.persistence.jdbc.user" value="s408946"/>
+            <property name="jakarta.persistence.jdbc.password" value="nyn4zKqRlFSnZJAX"/>
+            <property name="eclipselink.logging.level" value="INFO"/>
+            <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
+            <property name="eclipselink.weaving" value="false"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+

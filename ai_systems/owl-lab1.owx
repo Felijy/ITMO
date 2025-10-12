@@ -1,0 +1,954 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/kulag/ontologies/2025/8/untitled-ontology-2"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/kulag/ontologies/2025/8/untitled-ontology-2">
+    <Prefix name="" IRI="http://www.semanticweb.org/kulag/ontologies/2025/8/untitled-ontology-2/"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="#Card"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#City"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Color"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LargeCity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LocomotiveCard"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#RegularCity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Route"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#TrainCard"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#HasEndpoint"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasColor"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasLength"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasName"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#isWildcard"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#isWildcardCard"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#any"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#black"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#blue"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#bucharest"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#budapest"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#green"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#kharkov"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#kiev"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#locomotive"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#moskva"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#orange"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#petrograd"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#red"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#riga"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#rostov"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_budapest_kiev"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_budapest_sevastopol"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_kiev_kharkov"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_moskva_kharkov"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_moskva_petrograd"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_moskva_smolensk"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_petrograd_riga"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_petrograd_vilnius"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_riga_vilnius"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_rostov_kharkov"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_rostov_sevastopol"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_smolensk_kiev"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_vilnius_kiev"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_vilnius_smolensk"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_vilnius_warsaw"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#route_warsaw_kiev"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#sevastopol"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#smolensk"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#vilnus"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#wagon_black"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#wagon_blue"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#wagon_green"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#wagon_orange"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#wagon_red"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#wagon_white"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#wagon_yellow"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#warshaw"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#white"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#wien"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#yellow"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#LargeCity"/>
+        <Class IRI="#City"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LocomotiveCard"/>
+        <Class IRI="#Card"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#RegularCity"/>
+        <Class IRI="#City"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#TrainCard"/>
+        <Class IRI="#Card"/>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="#Color"/>
+        <NamedIndividual IRI="#any"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Color"/>
+        <NamedIndividual IRI="#black"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Color"/>
+        <NamedIndividual IRI="#blue"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RegularCity"/>
+        <NamedIndividual IRI="#bucharest"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#LargeCity"/>
+        <NamedIndividual IRI="#budapest"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Color"/>
+        <NamedIndividual IRI="#green"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#LargeCity"/>
+        <NamedIndividual IRI="#kharkov"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#LargeCity"/>
+        <NamedIndividual IRI="#kiev"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#LocomotiveCard"/>
+        <NamedIndividual IRI="#locomotive"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#LargeCity"/>
+        <NamedIndividual IRI="#moskva"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Color"/>
+        <NamedIndividual IRI="#orange"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#LargeCity"/>
+        <NamedIndividual IRI="#petrograd"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Color"/>
+        <NamedIndividual IRI="#red"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RegularCity"/>
+        <NamedIndividual IRI="#riga"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RegularCity"/>
+        <NamedIndividual IRI="#rostov"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_budapest_kiev"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_budapest_sevastopol"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_kiev_kharkov"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_moskva_kharkov"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_moskva_petrograd"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_moskva_smolensk"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_petrograd_riga"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_petrograd_vilnius"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_riga_vilnius"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_rostov_kharkov"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_rostov_sevastopol"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_smolensk_kiev"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_vilnius_kiev"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_vilnius_smolensk"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_vilnius_warsaw"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Route"/>
+        <NamedIndividual IRI="#route_warsaw_kiev"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RegularCity"/>
+        <NamedIndividual IRI="#sevastopol"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RegularCity"/>
+        <NamedIndividual IRI="#smolensk"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#RegularCity"/>
+        <NamedIndividual IRI="#vilnus"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#TrainCard"/>
+        <NamedIndividual IRI="#wagon_black"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#TrainCard"/>
+        <NamedIndividual IRI="#wagon_blue"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#TrainCard"/>
+        <NamedIndividual IRI="#wagon_green"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#TrainCard"/>
+        <NamedIndividual IRI="#wagon_orange"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#TrainCard"/>
+        <NamedIndividual IRI="#wagon_red"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#TrainCard"/>
+        <NamedIndividual IRI="#wagon_white"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#TrainCard"/>
+        <NamedIndividual IRI="#wagon_yellow"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#LargeCity"/>
+        <NamedIndividual IRI="#warshaw"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Color"/>
+        <NamedIndividual IRI="#white"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#LargeCity"/>
+        <NamedIndividual IRI="#wien"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Color"/>
+        <NamedIndividual IRI="#yellow"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#locomotive"/>
+        <NamedIndividual IRI="#any"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_budapest_kiev"/>
+        <NamedIndividual IRI="#budapest"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_budapest_kiev"/>
+        <NamedIndividual IRI="#kiev"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_budapest_kiev"/>
+        <NamedIndividual IRI="#any"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_budapest_sevastopol"/>
+        <NamedIndividual IRI="#budapest"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_budapest_sevastopol"/>
+        <NamedIndividual IRI="#sevastopol"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_budapest_sevastopol"/>
+        <NamedIndividual IRI="#white"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_kiev_kharkov"/>
+        <NamedIndividual IRI="#kharkov"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_kiev_kharkov"/>
+        <NamedIndividual IRI="#kiev"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_kiev_kharkov"/>
+        <NamedIndividual IRI="#any"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_moskva_kharkov"/>
+        <NamedIndividual IRI="#kharkov"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_moskva_kharkov"/>
+        <NamedIndividual IRI="#moskva"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_moskva_kharkov"/>
+        <NamedIndividual IRI="#any"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_moskva_petrograd"/>
+        <NamedIndividual IRI="#moskva"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_moskva_petrograd"/>
+        <NamedIndividual IRI="#petrograd"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_moskva_petrograd"/>
+        <NamedIndividual IRI="#white"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_moskva_smolensk"/>
+        <NamedIndividual IRI="#moskva"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_moskva_smolensk"/>
+        <NamedIndividual IRI="#smolensk"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_moskva_smolensk"/>
+        <NamedIndividual IRI="#orange"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_petrograd_riga"/>
+        <NamedIndividual IRI="#petrograd"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_petrograd_riga"/>
+        <NamedIndividual IRI="#riga"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_petrograd_riga"/>
+        <NamedIndividual IRI="#any"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_petrograd_vilnius"/>
+        <NamedIndividual IRI="#petrograd"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_petrograd_vilnius"/>
+        <NamedIndividual IRI="#vilnus"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_petrograd_vilnius"/>
+        <NamedIndividual IRI="#blue"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_riga_vilnius"/>
+        <NamedIndividual IRI="#riga"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_riga_vilnius"/>
+        <NamedIndividual IRI="#vilnus"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_riga_vilnius"/>
+        <NamedIndividual IRI="#green"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_rostov_kharkov"/>
+        <NamedIndividual IRI="#kharkov"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_rostov_kharkov"/>
+        <NamedIndividual IRI="#rostov"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_rostov_kharkov"/>
+        <NamedIndividual IRI="#green"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_rostov_sevastopol"/>
+        <NamedIndividual IRI="#rostov"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_rostov_sevastopol"/>
+        <NamedIndividual IRI="#sevastopol"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_rostov_sevastopol"/>
+        <NamedIndividual IRI="#any"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_smolensk_kiev"/>
+        <NamedIndividual IRI="#kiev"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_smolensk_kiev"/>
+        <NamedIndividual IRI="#smolensk"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_smolensk_kiev"/>
+        <NamedIndividual IRI="#red"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_vilnius_kiev"/>
+        <NamedIndividual IRI="#kiev"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_vilnius_kiev"/>
+        <NamedIndividual IRI="#vilnus"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_vilnius_kiev"/>
+        <NamedIndividual IRI="#any"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_vilnius_smolensk"/>
+        <NamedIndividual IRI="#smolensk"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_vilnius_smolensk"/>
+        <NamedIndividual IRI="#vilnus"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_vilnius_smolensk"/>
+        <NamedIndividual IRI="#yellow"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_vilnius_warsaw"/>
+        <NamedIndividual IRI="#vilnus"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_vilnius_warsaw"/>
+        <NamedIndividual IRI="#warshaw"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_vilnius_warsaw"/>
+        <NamedIndividual IRI="#red"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_warsaw_kiev"/>
+        <NamedIndividual IRI="#kiev"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <NamedIndividual IRI="#route_warsaw_kiev"/>
+        <NamedIndividual IRI="#warshaw"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#route_warsaw_kiev"/>
+        <NamedIndividual IRI="#any"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#wagon_black"/>
+        <NamedIndividual IRI="#black"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#wagon_blue"/>
+        <NamedIndividual IRI="#blue"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#wagon_green"/>
+        <NamedIndividual IRI="#green"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#wagon_orange"/>
+        <NamedIndividual IRI="#orange"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#wagon_red"/>
+        <NamedIndividual IRI="#red"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#wagon_white"/>
+        <NamedIndividual IRI="#white"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasColor"/>
+        <NamedIndividual IRI="#wagon_yellow"/>
+        <NamedIndividual IRI="#yellow"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#isWildcard"/>
+        <NamedIndividual IRI="#any"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#bucharest"/>
+        <Literal>Бухарест</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#budapest"/>
+        <Literal>Будапешт</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#kharkov"/>
+        <Literal>Харьков</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#kiev"/>
+        <Literal>Киев</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#locomotive"/>
+        <Literal>Локомотив</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#isWildcardCard"/>
+        <NamedIndividual IRI="#locomotive"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">true</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#moskva"/>
+        <Literal>Москва</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#petrograd"/>
+        <Literal>Петроград</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#riga"/>
+        <Literal>Рига</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#rostov"/>
+        <Literal>Ростов</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_budapest_kiev"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_budapest_sevastopol"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_kiev_kharkov"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_moskva_kharkov"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_moskva_petrograd"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_moskva_smolensk"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_petrograd_riga"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_petrograd_vilnius"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_riga_vilnius"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_rostov_kharkov"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_rostov_sevastopol"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_smolensk_kiev"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_vilnius_kiev"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">2</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_vilnius_smolensk"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_vilnius_warsaw"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">3</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasLength"/>
+        <NamedIndividual IRI="#route_warsaw_kiev"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#decimal">4</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#sevastopol"/>
+        <Literal>Севастополь</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#smolensk"/>
+        <Literal>Смоленск</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#vilnus"/>
+        <Literal>Вильнюс</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#wagon_black"/>
+        <Literal>Черный вагон</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#isWildcardCard"/>
+        <NamedIndividual IRI="#wagon_black"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#wagon_blue"/>
+        <Literal>Синий вагон</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#isWildcardCard"/>
+        <NamedIndividual IRI="#wagon_blue"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#wagon_green"/>
+        <Literal>Зеленый вагон</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#isWildcardCard"/>
+        <NamedIndividual IRI="#wagon_green"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#wagon_orange"/>
+        <Literal>Оранжевый вагон</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#isWildcardCard"/>
+        <NamedIndividual IRI="#wagon_orange"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#wagon_red"/>
+        <Literal>Красный вагон</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#isWildcardCard"/>
+        <NamedIndividual IRI="#wagon_red"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#wagon_white"/>
+        <Literal>Белый вагон</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#isWildcardCard"/>
+        <NamedIndividual IRI="#wagon_white"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#wagon_yellow"/>
+        <Literal>Жёлтый вагон</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#isWildcardCard"/>
+        <NamedIndividual IRI="#wagon_yellow"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#boolean">false</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#warshaw"/>
+        <Literal>Варшава</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#hasName"/>
+        <NamedIndividual IRI="#wien"/>
+        <Literal>Вена</Literal>
+    </DataPropertyAssertion>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <Class IRI="#Route"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasColor"/>
+        <ObjectUnionOf>
+            <Class IRI="#Card"/>
+            <Class IRI="#Route"/>
+        </ObjectUnionOf>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#HasEndpoint"/>
+        <Class IRI="#City"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasColor"/>
+        <Class IRI="#Color"/>
+    </ObjectPropertyRange>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasLength"/>
+        <Class IRI="#Route"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#hasName"/>
+        <Class IRI="#City"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#isWildcard"/>
+        <Class IRI="#Color"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#isWildcardCard"/>
+        <Class IRI="#Card"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasLength"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#hasName"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#isWildcard"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#isWildcardCard"/>
+        <Datatype abbreviatedIRI="xsd:boolean"/>
+    </DataPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+

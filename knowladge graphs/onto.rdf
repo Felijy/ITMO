@@ -1,0 +1,273 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/"
+     xml:base="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#affectsGameConcept -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#affectsGameConcept">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Ability"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#GameConcept"/>
+        <rdfs:comment>Указывает, на какой аспект игры влияет способность (например, на Чудеса света, на Науку).</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#hasAbility -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#hasAbility">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Civilization"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Leader"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Ability"/>
+        <rdfs:comment>Связывает Лидера или Цивилизацию с их способностью.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#hasAffinityForVictory -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#hasAffinityForVictory">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Leader"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#VictoryType"/>
+        <rdfs:comment>Прямая связь, показывающая, к какому типу победы склонен Лидер.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#hasLeader -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#hasLeader">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Civilization"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Leader"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#hasSynergyWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#hasSynergyWith">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Leader"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Leader"/>
+        <rdfs:comment>Симметричное свойство: один лидер хорошо сочетается с другим.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#hasUnique -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#hasUnique">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Civilization"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Leader"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Unique"/>
+        <rdfs:comment>Связывает Лидера или Цивилизацию с уникальным юнитом/зданием/улучшением.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#isEnhancedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#isEnhancedBy">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Ability"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Resource"/>
+        <rdfs:comment>Способность усиливается ресурсом.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#requiresAction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#requiresAction">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#VictoryType"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Action"/>
+        <rdfs:comment>Тип победы требует выполнения определенных действий.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#requiresTechnology -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#requiresTechnology">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Unique"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#VictoryType"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Technology"/>
+        <rdfs:comment>Тип победы или юнит/здание требует определенную технологию.</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#bonusCondition -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#bonusCondition">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Ability"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Условие, при котором бонус активен (напр. &apos;В городах с Гаванью&apos;).</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#bonusType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#bonusType">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Ability"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Тип бонуса (Production, Science, Culture, Faith, Gold, etc.).</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#bonusValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#bonusValue">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Ability"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Числовое или текстовое значение бонуса (напр. &apos;15&apos;, &apos;+2&apos;, &apos;50%&apos;).</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#hasDescription -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#hasDescription">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#hasName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#hasName">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Ability -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Ability">
+        <rdfs:comment>Способность лидера или цивилизации, которая дает бонусы.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Action -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Action">
+        <rdfs:comment>Игровое действие (напр. &apos;Строить кампусы&apos;, &apos;Захватывать столицы&apos;).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Civilization -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Civilization"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#GameConcept -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#GameConcept">
+        <rdfs:comment>Общий класс для всего, на что могут влиять бонусы (районы, чудеса, юниты, наука и т.д.).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Leader -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Leader"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Resource -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Resource"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Technology -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Technology"/>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Unique -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Unique">
+        <rdfs:comment>Абстрактный класс для уникальных юнитов, зданий и улучшений.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#UniqueBuilding -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#UniqueBuilding">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Unique"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#UniqueImprovement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#UniqueImprovement">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Unique"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#UniqueUnit -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#UniqueUnit">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#Unique"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#VictoryType -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/kulag/ontologies/2025/9/civ6-compact-ontology/#VictoryType"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+

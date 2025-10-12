@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+    <title>Edit City</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+    <h:form id="editForm" styleClass="panel">
+        <h:messages styleClass="messages" infoClass="info" errorClass="error"/>
+        <h:panelGrid columns="3" columnClasses="lbl,val,msg">
+            <h:outputLabel for="name" value="Name"/>
+            <h:inputText id="name" value="#{cityBean.current.name}" required="true" requiredMessage="Name is required"/>
+            <h:message for="name" styleClass="field-msg"/>
+
+            <h:outputLabel for="x" value="X"/>
+            <h:inputText id="x" value="#{cityBean.current.coordinates.x}" required="true"
+                         requiredMessage="X is required" converterMessage="X must be a number"/>
+            <h:message for="x" styleClass="field-msg"/>
+
+            <h:outputLabel for="y" value="Y"/>
+            <h:inputText id="y" value="#{cityBean.current.coordinates.y}" required="true"
+                         requiredMessage="Y is required" converterMessage="Y must be a number"/>
+            <h:message for="y" styleClass="field-msg"/>
+
+            <h:outputLabel for="area" value="Area"/>
+            <h:inputText id="area" value="#{cityBean.current.area}" required="true" requiredMessage="Area is required"
+                         converterMessage="Area must be a positive number"/>
+            <h:message for="area" styleClass="field-msg"/>
+
+            <h:outputLabel for="population" value="Population"/>
+            <h:inputText id="population" value="#{cityBean.current.population}" required="true"
+                         requiredMessage="Population is required" converterMessage="Population must be a whole number"/>
+            <h:message for="population" styleClass="field-msg"/>
+
+            <h:outputLabel for="est" value="Establishment"/>
+            <h:inputText id="est" value="#{cityBean.current.establishmentDate}" pt:type="date" converter="localDateOnly"
+                         converterMessage="Use format yyyy-MM-dd"/>
+            <h:message for="est" styleClass="field-msg"/>
+
+            <h:outputLabel for="capital" value="Capital"/>
+            <h:selectBooleanCheckbox id="capital" value="#{cityBean.current.capital}"/>
+            <h:outputText/>
+
+            <h:outputLabel for="masl" value="MASL"/>
+            <h:inputText id="masl" value="#{cityBean.current.metersAboveSeaLevel}"
+                         converterMessage="MASL must be a number"/>
+            <h:message for="masl" styleClass="field-msg"/>
+
+            <h:outputLabel for="tel" value="Telephone Code"/>
+            <h:inputText id="tel" value="#{cityBean.current.telephoneCode}" required="true"
+                         requiredMessage="Telephone code is required"
+                         converterMessage="Telephone code must be a number"/>
+            <h:message for="tel" styleClass="field-msg"/>
+
+            <h:outputLabel for="climate" value="Climate"/>
+            <h:selectOneMenu id="climate" value="#{cityBean.current.climate}">
+                <f:selectItem itemValue="" itemLabel="None"/>
+                <f:selectItems value="#{cityBean.climates}"/>
+            </h:selectOneMenu>
+            <h:outputText/>
+
+            <h:outputLabel for="standard" value="Standard"/>
+            <h:selectOneMenu id="standard" value="#{cityBean.current.standardOfLiving}" required="true"
+                             requiredMessage="Standard is required">
+                <f:selectItems value="#{cityBean.standards}"/>
+            </h:selectOneMenu>
+            <h:message for="standard" styleClass="field-msg"/>
+
+            <h:outputLabel for="govName" value="Governor Name" styleClass="required"/>
+            <h:inputText id="govName" value="#{cityBean.governorName}" label="Governor Name" required="true"
+                         requiredMessage="Governor name is required"
+                         styleClass="#{empty facesContext.getMessageList('editForm:govName') ? '' : 'invalid'}"/>
+            <h:message for="govName" styleClass="field-msg"/>
+
+            <h:outputLabel for="govBirth" value="Governor Birthday"/>
+            <h:inputText id="govBirth" value="#{cityBean.governorBirthday}" pt:type="date" converter="localDateOnly"
+                         converterMessage="Use format yyyy-MM-dd"/>
+            <h:message for="govBirth" styleClass="field-msg"/>
+        </h:panelGrid>
+        <div class="flex" style="margin-top:10px;">
+            <h:commandButton styleClass="btn" value="Update" action="#{cityBean.update}"/>
+            <h:link styleClass="btn secondary" outcome="index" value="Back"/>
+        </div>
+    </h:form>
+</h:body>
+</html>
