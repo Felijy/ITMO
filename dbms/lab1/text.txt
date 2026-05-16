@@ -1,0 +1,64 @@
+locale-gen ru_RU.UTF-8
+
+
+mkdir $HOME/kqd74
+mkdir $HOME/qni0
+
+export PGDATA=$HOME/kqd74
+export LC_ALL=ru_RU.UTF-8
+export PG_ENCODING=UTF8
+
+/usr/lib/postgresql/14/bin/initdb --auth-local=peer --auth-host=password
+
+
+mv $HOME/kqd74/pg_wal/* $HOME/qni0/
+rmdir $HOME/kqd74/pg_wal
+
+ln -s $HOME/qni0 $HOME/kqd74/pg_wal
+
+apt update
+apt install vim
+
+export PATH=/usr/lib/postgresql/14/bin:$PATH
+
+
+chown -R student:student /var/run/postgresql
+chmod 775 /var/run/PostgreSQL
+
+
+табличные пространства пошли:
+
+mkdir -p $HOME/onc39
+mkdir -p $HOME/ugp58
+
+CREATE TABLESPACE ts_onc39 LOCATION '/home/student/onc39';
+CREATE TABLESPACE ts_ugp58 LOCATION '/home/student/ugp58';
+CREATE DATABASE leftgraymom TEMPLATE template0;
+CREATE ROLE pilinka WITH LOGIN PASSWORD 'postgres';
+
+GRANT CONNECT ON DATABASE leftgraymom TO pilinka;
+GRANT CONNECT ON DATABASE postgres TO pilinka;
+GRANT CREATE ON TABLESPACE ts_onc39 TO pilinka;
+GRANT CREATE ON TABLESPACE ts_ugp58 TO pilinka;
+
+в leftgray mommy:
+
+GRANT CREATE ON SCHEMA public TO pilinka;
+
+
+
+export PGPASSWORD='postgres'
+psql -h 127.0.0.1 -p 9055 -U pilinka -d leftgraymom -f partitions.sql
+
+pgbench -h 127.0.0.1 -p 9055 -U pilinka -i -s 10 leftgraymom
+
+psql -p 9055 -d postgres -c "GRANT CREATE ON SCHEMA public TO pilinka;"
+
+
+pgbench -h 127.0.0.1 -p 9055 -U pilinka -i -s 5 postgres
+
+для отчета типа запросы какие-то якобы надо типа:
+
+psql -p 9055 -d leftgraymom
+
+

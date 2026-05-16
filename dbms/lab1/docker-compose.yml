@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  postgres:
+    build: .
+    container_name: DBMS
+    ports:
+      - "9055:9055"
+    volumes:
+      - ./kqd74:/home/postgres/kqd74
+      - ./qni0:/home/postgres/qni0
+      - ./onc39:/home/postgres/onc39
+      - ./ugp58:/home/postgres/ugp58
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    command: >
+      bash -c "
+      chown -R postgres:postgres /home/postgres/kqd74 /home/postgres/qni0 /home/postgres/onc39 /home/postgres/ugp58 &&
+      exec docker-entrypoint.sh postgres -c port=9055 -c config_file=/home/postgres/kqd74/postgresql.conf
+      "
